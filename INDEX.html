@@ -1,0 +1,1960 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoResort La Porcada | COMO Group Operator Pitch & Membership Simulator</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&family=Montserrat:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        gold: {
+                            100: '#FAF4EB',
+                            200: '#F2E4C9',
+                            300: '#E5CD9D',
+                            400: '#D4AF37',
+                            500: '#C5A059',
+                            600: '#A9843F',
+                            700: '#86672C',
+                        },
+                        obsidian: {
+                            950: '#07080A',
+                            900: '#0D0F12',
+                            850: '#12151B',
+                            800: '#181C24',
+                            700: '#222733',
+                            600: '#2E3545',
+                        },
+                        shambhala: {
+                            400: '#6E9075',
+                            500: '#517258',
+                            600: '#3D5844',
+                        },
+                        ivory: '#F9F8F6'
+                    },
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        sans: ['Montserrat', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            background-color: #07080A;
+            color: #F9F8F6;
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
+        .font-cinzel {
+            font-family: 'Cinzel', serif;
+        }
+        .glass-panel {
+            background: rgba(18, 21, 27, 0.78);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+        .glass-panel-hover:hover {
+            border-color: rgba(212, 175, 55, 0.5);
+            box-shadow: 0 16px 40px -10px rgba(197, 160, 89, 0.25);
+            transform: translateY(-2px);
+        }
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #FAF4EB 0%, #D4AF37 50%, #A9843F 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .shambhala-gradient-text {
+            background: linear-gradient(135deg, #FAF4EB 0%, #86B08D 50%, #517258 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .tab-btn.active {
+            background-color: #C5A059;
+            color: #07080A;
+            font-weight: 700;
+            border-color: #D4AF37;
+        }
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 7px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #07080A;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #222733;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #C5A059;
+        }
+
+        /* === LOGO IMAGE FALLBACK SYSTEM === */
+        .logo-wrapper {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .logo-wrapper img.logo-img {
+            display: block;
+            object-fit: contain;
+        }
+        .logo-wrapper img.logo-img.hidden-fallback {
+            display: none;
+        }
+        .logo-fallback {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .logo-wrapper.has-fallback .logo-fallback {
+            display: flex;
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-gold-500 selection:text-obsidian-950">
+
+    <!-- Top Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-gold-500/20 px-4 md:px-8 py-3 transition-all">
+        <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
+
+            <!-- LEFT: TAKYMA (Project Promoter) + EcoResort Brand -->
+            <div class="flex items-center gap-3 md:gap-5">
+                <!-- TAKYMA LOGO -->
+                <div class="flex flex-col items-center gap-0.5">
+                    <div class="logo-wrapper w-11 h-11" data-logo="takyma">
+                        <img src="images/LOGO.png" alt="TAKYMA" class="logo-img w-11 h-11 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-11 h-11 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 text-obsidian-950 text-[11px]">TAK</span>
+                    </div>
+                    <span class="text-[7px] uppercase tracking-widest text-gold-500/80 font-semibold">Promotor</span>
+                </div>
+
+                <!-- Divider -->
+                <div class="h-12 w-px bg-gold-500/20 hidden sm:block"></div>
+
+                <!-- EcoResort Logo + Title -->
+                <div class="flex items-center gap-3">
+                    <div class="logo-wrapper w-12 h-12" data-logo="ecoresort">
+                        <img src="images/ECORESORT.png" alt="EcoResort La Porcada" class="logo-img w-12 h-12 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-12 h-12 rounded-lg bg-obsidian-800 border border-gold-500/40 text-gold-300 text-base">ECO</span>
+                    </div>
+                    <div class="hidden sm:block">
+                        <span class="font-cinzel font-bold text-sm md:text-base tracking-[0.18em] text-ivory uppercase block leading-tight">ECORESORT</span>
+                        <span class="text-[9px] uppercase tracking-[0.25em] text-gold-400 block font-light leading-tight">LA PORCADA · PANAMÁ PACÍFICO</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT: COMO Group Operator + Lang Switcher -->
+            <div class="flex items-center gap-3 md:gap-4">
+                <!-- COMO GROUP Operator Logo -->
+                <div class="hidden md:flex flex-col items-center gap-0.5">
+                    <div class="logo-wrapper w-10 h-10" data-logo="comogroup">
+                        <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-10 h-10 rounded-md bg-gold-500/10 border border-gold-400/40 text-gold-400 text-sm">C</span>
+                    </div>
+                    <span class="text-[7px] uppercase tracking-widest text-gray-400 font-semibold">Operador</span>
+                </div>
+
+                <button onclick="window.print()" class="hidden sm:inline-flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-medium text-gray-300 hover:text-gold-300 border border-gold-500/20 hover:border-gold-500/40 transition-all">
+                    <i class="fa-solid fa-print"></i>
+                    <span class="lang-es">Imprimir</span><span class="lang-en hidden">Print</span>
+                </button>
+
+                <!-- Lang Switcher Pill -->
+                <div class="flex items-center bg-obsidian-850 p-1 rounded-full border border-gold-500/30">
+                    <button id="btn-es" onclick="setLanguage('es')" class="px-3 py-1 text-[11px] font-bold rounded-full bg-gold-500 text-obsidian-950 transition-all shadow-sm">ES</button>
+                    <button id="btn-en" onclick="setLanguage('en')" class="px-3 py-1 text-[11px] font-bold rounded-full text-gray-400 hover:text-ivory transition-all">EN</button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-16 px-6 overflow-hidden border-b border-gold-500/20">
+        <!-- Ambient Radial Glows -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+        <div class="absolute bottom-10 right-10 w-[450px] h-[450px] bg-shambhala-500/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto text-center relative z-10">
+
+            <!-- Large EcoResort Logo -->
+            <div class="flex justify-center mb-6">
+                <div class="logo-wrapper w-28 h-28 md:w-32 md:h-32" data-logo="ecoresort-hero">
+                    <img src="images/ECORESORT.png" alt="EcoResort La Porcada" class="logo-img w-28 h-28 md:w-32 md:h-32 rounded-2xl object-contain" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                    <span class="logo-fallback w-28 h-28 md:w-32 md:h-32 rounded-2xl bg-gradient-to-br from-obsidian-800 to-obsidian-950 border-2 border-gold-500/40 text-gold-300 text-3xl md:text-4xl">ECO</span>
+                </div>
+            </div>
+
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6 shadow-sm">
+                <i class="fa-solid fa-gem text-xs text-gold-400"></i>
+                <span class="lang-es">Dossier Estratégico · Operador HMA · Christina Ong & COMO Group</span>
+                <span class="lang-en hidden">Strategic Operator Pitch · HMA · Christina Ong & COMO Group</span>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-cinzel text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-ivory mb-6 leading-tight">
+                <span class="lang-es">ECORESORT LA PORCADA <br><span class="gold-gradient-text">OPERACIÓN COMO GROUP</span></span>
+                <span class="lang-en hidden">ECORESORT LA PORCADA <br><span class="gold-gradient-text">COMO GROUP OPERATION</span></span>
+            </h1>
+
+            <!-- Subtitle -->
+            <p class="text-sm sm:text-base md:text-lg text-gray-300 max-w-3xl mx-auto font-light leading-relaxed mb-8">
+                <span class="lang-es">EcoResort La Porcada es un desarrollo de <strong>347 Ha</strong> en el Pacífico panameño promovido por <strong>TAKYMA Investment Pioneer</strong>, concebido para ser operado bajo acuerdo HMA por <strong>COMO Hotels & Resorts</strong>, grupo fundado por la legendaria <strong>Christina Ong</strong>, pionera mundial de islas privadas de ultra-lujo y wellness holístico.</span>
+                <span class="lang-en hidden">EcoResort La Porcada is a 347-hectare development in the Panamanian Pacific promoted by <strong>TAKYMA Investment Pioneer</strong>, designed to be operated under an HMA agreement by <strong>COMO Hotels & Resorts</strong>, the group founded by legendary <strong>Christina Ong</strong>, global pioneer of ultra-luxury private islands and holistic wellness.</span>
+            </p>
+
+            <!-- Navigation Tabs -->
+            <div class="flex flex-wrap justify-center gap-2 sm:gap-3 p-1.5 rounded-2xl glass-panel max-w-4xl mx-auto">
+                <button onclick="switchTab('overview')" id="tab-overview" class="tab-btn active px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider transition-all">
+                    <span class="lang-es">1. Origen & Filosofía</span><span class="lang-en hidden">1. Profile & Philosophy</span>
+                </button>
+                <button onclick="switchTab('portfolio')" id="tab-portfolio" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">2. Portfolio Global</span><span class="lang-en hidden">2. Property Portfolio</span>
+                </button>
+                <button onclick="switchTab('fit')" id="tab-fit" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">3. Encaje Panamá</span><span class="lang-en hidden">3. Panama Project Match</span>
+                </button>
+                <button onclick="switchTab('matrix')" id="tab-matrix" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">4. COMO vs. Aman</span><span class="lang-en hidden">4. COMO vs. Aman Matrix</span>
+                </button>
+                <button onclick="switchTab('contact')" id="tab-contact" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">5. Pitch & Contacto</span><span class="lang-en hidden">5. Pitch & Outreach</span>
+                </button>
+                <button onclick="switchTab('arch')" id="tab-arch" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">6. Arquitectura & Retribución</span><span class="lang-en hidden">6. Architecture & Fees</span>
+                </button>
+                <button onclick="switchTab('reval')" id="tab-reval" class="tab-btn px-4 py-2.5 rounded-xl text-xs font-bold uppercase tracking-wider text-gray-300 hover:text-gold-300 transition-all">
+                    <span class="lang-es">7. Revalorización</span><span class="lang-en hidden">7. Revaluation</span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="py-12 px-6 max-w-7xl mx-auto min-h-[600px]">
+
+        <!-- TAB 1: ORIGIN, PHILOSOPHY & CHRISTINA ONG -->
+        <div id="content-overview" class="tab-content space-y-12">
+
+            <!-- COMO Group Logo + Summary Header -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
+                <div class="lg:col-span-2 glass-panel p-8 rounded-3xl border border-gold-500/30">
+                    <div class="flex items-center gap-4 mb-4">
+                        <!-- COMO Group Logo -->
+                        <div class="logo-wrapper w-14 h-14 flex-shrink-0" data-logo="como-group-section">
+                            <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-14 h-14 rounded-xl" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                            <span class="logo-fallback w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-400/40 text-gold-400 text-2xl">C</span>
+                        </div>
+                        <div>
+                            <div class="inline-flex items-center gap-2 text-gold-400 text-xs font-semibold uppercase tracking-widest mb-1">
+                                <i class="fa-solid fa-user-ninja"></i>
+                                <span class="lang-es">Origen & Liderazgo de la Firma</span><span class="lang-en hidden">Origin & Corporate Leadership</span>
+                            </div>
+                            <h2 class="font-cinzel text-2xl sm:text-3xl font-bold text-ivory">
+                                CHRISTINA ONG & <span class="gold-gradient-text">COMO GROUP</span>
+                            </h2>
+                        </div>
+                    </div>
+                    <p class="text-xs sm:text-sm text-gray-300 leading-relaxed font-light mb-4">
+                        <span class="lang-es">Fundado por la legendaria empresaria singapurense <strong>Christina Ong</strong> (née Fu, nacida en octubre de 1947), <strong>COMO Group</strong> es un conglomerado privado integrado que abarca hospitalidad de ultra-lujo (COMO Hotels and Resorts), moda (Club 21), bienestar (COMO Shambhala), alimentación orgánica (COMO Lifestyle) y la fundación filantrópica COMO Foundation. El acrónimo COMO deriva de las iniciales de su fundadora (<em>CO</em>nstantia <em>MO</em>nica Ong, conocida como Christina). Christina Ong abrió su primera boutique de moda en 1972 y posteriormente expandió su visión hacia la hospitalidad holística, creando un imperio familiar con sede en Singapur y oficinas en Londres.</span>
+                        <span class="lang-en hidden">Founded by legendary Singaporean entrepreneur <strong>Christina Ong</strong> (née Fu, born October 1947), <strong>COMO Group</strong> is a privately held integrated conglomerate spanning ultra-luxury hospitality (COMO Hotels and Resorts), fashion (Club 21), wellness (COMO Shambhala), organic living (COMO Lifestyle) and the COMO Foundation philanthropic arm. The acronym COMO derives from its founder's initials. Christina Ong opened her first fashion boutique in 1972 and later expanded her vision into holistic hospitality.</span>
+                    </p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 gap-4 pt-4 border-t border-gold-500/10 text-xs">
+                        <div>
+                            <span class="text-gray-400 block"><span class="lang-es">Sede Central:</span><span class="lang-en hidden">Headquarters:</span></span>
+                            <span class="font-semibold text-gold-300">Singapur / Londres</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block"><span class="lang-es">Propiedad Emblema:</span><span class="lang-en hidden">Flagship Property:</span></span>
+                            <span class="font-semibold text-gold-300">COMO Parrot Cay</span>
+                        </div>
+                        <div>
+                            <span class="text-gray-400 block"><span class="lang-es">Pilar de Salud:</span><span class="lang-en hidden">Wellness Arm:</span></span>
+                            <span class="font-semibold text-gold-300">COMO Shambhala</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats Box -->
+                <div class="glass-panel p-8 rounded-3xl text-center border border-gold-500/20 bg-obsidian-900/90">
+                    <div class="w-16 h-16 rounded-2xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400 text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-leaf"></i>
+                    </div>
+                    <h3 class="font-cinzel text-xl font-bold text-ivory mb-2">COMO SHAMBHALA</h3>
+                    <p class="text-xs text-gray-400 font-light mb-4">
+                        <span class="lang-es">Marca global de longevidad, spas médicos, ayurveda y gastronomía viva (COMO Shambhala Cuisine).</span>
+                        <span class="lang-en hidden">Global longevity, medical spa, Ayurveda, and organic nutritional dining brand.</span>
+                    </p>
+                    <div class="inline-block px-4 py-1.5 rounded-full bg-shambhala-500/20 text-shambhala-400 font-bold text-xs uppercase tracking-wider">
+                        <span class="lang-es">Pilar Estratégico Wellness</span><span class="lang-en hidden">Core Wellness Pillar</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- EXPANDED: CHRISTINA ONG BIOGRAPHY -->
+            <div class="glass-panel p-8 md:p-10 rounded-3xl border border-gold-500/30">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400">
+                        <i class="fa-solid fa-crown"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory">
+                        <span class="lang-es">PERFIL BIográfico: <span class="gold-gradient-text">CHRISTINA ONG</span></span>
+                        <span class="lang-en hidden">BIOGRAPHICAL PROFILE: <span class="gold-gradient-text">CHRISTINA ONG</span></span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    <div class="bg-obsidian-900/90 rounded-xl p-4 border border-gold-500/10">
+                        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold block mb-1"><span class="lang-es">Nacimiento</span><span class="lang-en hidden">Born</span></span>
+                        <span class="text-sm text-ivory font-semibold">Octubre 1947 · Singapur</span>
+                    </div>
+                    <div class="bg-obsidian-900/90 rounded-xl p-4 border border-gold-500/10">
+                        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold block mb-1"><span class="lang-es">Cónyuge</span><span class="lang-en hidden">Spouse</span></span>
+                        <span class="text-sm text-ivory font-semibold">Ong Beng Seng (Hotel Properties Ltd)</span>
+                    </div>
+                    <div class="bg-obsidian-900/90 rounded-xl p-4 border border-gold-500/10">
+                        <span class="text-[10px] uppercase tracking-widest text-gold-400 font-bold block mb-1"><span class="lang-es">Nacionalidad</span><span class="lang-en hidden">Nationality</span></span>
+                        <span class="text-sm text-ivory font-semibold">Singapurense</span>
+                    </div>
+                </div>
+
+                <div class="space-y-4 text-xs sm:text-sm text-gray-300 font-light leading-relaxed">
+                    <p>
+                        <span class="lang-es"><strong>Cristina Ong (née Fu)</strong> es una de las empresarias más influyentes y discretas del sudeste asiático. En 1972, con apenas 24 años, abrió en el Tanglin Shopping Centre de Singapur la primera boutique <strong>Club 21</strong>, una tienda multi-marca que introdujo en Asia marcas internacionales de alta costura. Bajo su liderazgo, Club 21 creció hasta convertirse en uno de los mayores distribuidores de moda de lujo del continente, gestionando hoy más de 250 marcas en 400 tiendas repartidas por toda Asia-Pacífico.</span>
+                        <span class="lang-en hidden"><strong>Christina Ong (née Fu)</strong> is one of the most influential yet discreet businesswomen in Southeast Asia. In 1972, at just 24, she opened the first <strong>Club 21</strong> boutique in Singapore's Tanglin Shopping Centre, a multi-label store that brought international haute couture to Asia. Under her leadership, Club 21 grew to become one of the continent's largest luxury fashion distributors, today managing over 250 brands across 400 Asia-Pacific stores.</span>
+                    </p>
+                    <p>
+                        <span class="lang-es">Casada con <strong>Ong Beng Seng</strong>, magnate hotelero y fundador de <strong>Hotel Properties Limited (HPL)</strong>, Christina Ong consolidó una posición única en la alta sociedad asiática. Mientras su esposo desarrollaba hoteles Four Seasons y propiedades residenciales de lujo, ella cultivó una sensibilidad estética propia que la llevó a expandir su imperio más allá de la moda: hacia la <strong>hospitalidad holística</strong>, la <strong>nutrición consciente</strong> y el <strong>bienestar médico-preventivo</strong>.</span>
+                        <span class="lang-en hidden">Married to <strong>Ong Beng Seng</strong>, hotel magnate and founder of <strong>Hotel Properties Limited (HPL)</strong>, Christina Ong consolidated a unique position in Asian high society. While her husband developed Four Seasons hotels and luxury residential properties, she cultivated her own aesthetic sensibility that led her to expand her empire beyond fashion: into <strong>holistic hospitality</strong>, <strong>conscious nutrition</strong>, and <strong>preventive medical wellness</strong>.</span>
+                    </p>
+                    <p>
+                        <span class="lang-es">De este crisol nació <strong>COMO Group</strong>, donde cada división responde a una misma filosofía: ofrecer experiencias <em>de calidad superior pero nunca ostentosas</em>, donde el lujo se entiende como <strong>autenticidad, salud y belleza serena</strong>. Su estilo personal —minimalista, refinado, profundamente influido por la cultura asiática y la práctica budista— se traduce en cada propiedad: desde los retiros de Bali hasta las islas privadas del Caribe y el Pacífico Sur.</span>
+                        <span class="lang-en hidden">From this crucible emerged <strong>COMO Group</strong>, where each division responds to a single philosophy: to offer experiences <em>of superior quality but never ostentatious</em>, where luxury is understood as <strong>authenticity, health and serene beauty</strong>. Her personal style —minimalist, refined, deeply influenced by Asian culture and Buddhist practice— translates into every property: from Bali retreats to private islands in the Caribbean and South Pacific.</span>
+                    </p>
+                    <p>
+                        <span class="lang-es">A través de <strong>COMO Foundation</strong> (1997), Christina Ong ha canalizado su filantropía hacia la equidad de género, la educación y los medios de vida sostenibles, reforzando el ADN social del grupo. Su hija <strong>Melissa Ong</strong> participa activamente en la dirección estratégica, garantizando la continuidad de una firma familiar de referencia global en el segmento <em>quiet luxury</em>.</span>
+                        <span class="lang-en hidden">Through <strong>COMO Foundation</strong> (1997), Christina Ong has channeled her philanthropy toward gender equity, education and sustainable livelihoods, reinforcing the group's social DNA. Her daughter <strong>Melissa Ong</strong> actively participates in strategic direction, ensuring the continuity of a family-owned firm that is a global benchmark in the <em>quiet luxury</em> segment.</span>
+                    </p>
+                </div>
+            </div>
+
+            <!-- COMO GROUP BUSINESS DIVISIONS -->
+            <div>
+                <div class="text-center mb-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory mb-2">
+                        <span class="lang-es">DIVISIONES DEL <span class="gold-gradient-text">COMO GROUP</span></span>
+                        <span class="lang-en hidden">COMO GROUP <span class="gold-gradient-text">DIVISIONS</span></span>
+                    </h3>
+                    <p class="text-xs text-gray-400">
+                        <span class="lang-es">Conglomerado integrado que opera en 5 verticales sinérgicos bajo una misma visión de vida consciente.</span>
+                        <span class="lang-en hidden">Integrated conglomerate operating across 5 synergistic verticals under one conscious-living vision.</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-5 gap-4">
+                    <div class="glass-panel p-5 rounded-2xl text-center glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-2"><i class="fa-solid fa-hotel"></i></div>
+                        <h4 class="font-cinzel text-sm font-bold text-ivory mb-1">COMO Hotels & Resorts</h4>
+                        <p class="text-[10px] text-gray-400">15+ propiedades · 8 países</p>
+                    </div>
+                    <div class="glass-panel p-5 rounded-2xl text-center glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-2"><i class="fa-solid fa-shirt"></i></div>
+                        <h4 class="font-cinzel text-sm font-bold text-ivory mb-1">Club 21</h4>
+                        <p class="text-[10px] text-gray-400">250+ marcas · 400 tiendas</p>
+                    </div>
+                    <div class="glass-panel p-5 rounded-2xl text-center glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-2"><i class="fa-solid fa-spa"></i></div>
+                        <h4 class="font-cinzel text-sm font-bold text-ivory mb-1">COMO Shambhala</h4>
+                        <p class="text-[10px] text-gray-400">Wellness global · Spas</p>
+                    </div>
+                    <div class="glass-panel p-5 rounded-2xl text-center glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-2"><i class="fa-solid fa-utensils"></i></div>
+                        <h4 class="font-cinzel text-sm font-bold text-ivory mb-1">COMO Lifestyle</h4>
+                        <p class="text-[10px] text-gray-400">F&B · Distribución orgánica</p>
+                    </div>
+                    <div class="glass-panel p-5 rounded-2xl text-center glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-2"><i class="fa-solid fa-hand-holding-heart"></i></div>
+                        <h4 class="font-cinzel text-sm font-bold text-ivory mb-1">COMO Foundation</h4>
+                        <p class="text-[10px] text-gray-400">Filantropía desde 1997</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- BRAND PILLARS GRID -->
+            <div>
+                <div class="text-center mb-6">
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory mb-2">
+                        <span class="lang-es">PILARES DE <span class="gold-gradient-text">MARCA</span></span>
+                        <span class="lang-en hidden">BRAND <span class="gold-gradient-text">PILLARS</span></span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+                    <div class="glass-panel p-8 rounded-2xl glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-4"><i class="fa-solid fa-spa"></i></div>
+                        <h3 class="font-cinzel text-lg font-bold text-ivory mb-3">
+                            <span class="lang-es">Bienestar Holístico</span><span class="lang-en hidden">Holistic Wellness</span>
+                        </h3>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed">
+                            <span class="lang-es">A diferencia de spas convencionales, COMO Shambhala integra doctores orientales, maestros de yoga, ayurveda, programas de longevidad y nutrición celular bio-activa. Su buque insignia, COMO Shambhala Estate en Bali, es uno de los retiros wellness más respetados del mundo.</span>
+                            <span class="lang-en hidden">Unlike standard resort spas, COMO Shambhala combines Asian medicine practitioners, yoga masters, Ayurveda, and cellular longevity programs. Its flagship, COMO Shambhala Estate in Bali, is among the world's most respected wellness retreats.</span>
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-4"><i class="fa-solid fa-utensils"></i></div>
+                        <h3 class="font-cinzel text-lg font-bold text-ivory mb-3">
+                            <span class="lang-es">COMO Cuisine & Gastronomía</span><span class="lang-en hidden">COMO Cuisine & Gastronomy</span>
+                        </h3>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed">
+                            <span class="lang-es">Gastronomía orgánica de autor baja en procesados, enfocada en maximizar enzimas vivas y nutrientes sintónicos con el entorno local del resort. Cada cocina trabaja con productores cercanos y huertos propios.</span>
+                            <span class="lang-en hidden">Organic culinary philosophy designed to boost energy, digestive health, and cellular nutrition without compromising gourmet luxury. Each kitchen works with nearby producers and on-site gardens.</span>
+                        </p>
+                    </div>
+
+                    <div class="glass-panel p-8 rounded-2xl glass-panel-hover transition-all">
+                        <div class="text-gold-400 text-2xl mb-4"><i class="fa-solid fa-water"></i></div>
+                        <h3 class="font-cinzel text-lg font-bold text-ivory mb-3">
+                            <span class="lang-es">Dominio de Islas Privadas</span><span class="lang-en hidden">Private Island Mastery</span>
+                        </h3>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed">
+                            <span class="lang-es">COMO es uno de los poquísimos operadores del planeta con experiencia probada en la operación logística y comercial de islas completas en el Caribe (Parrot Cay, 400 Ha) y el Pacífico Sur (Laucala, 1.400 Ha).</span>
+                            <span class="lang-en hidden">COMO is among the exceptionally rare global luxury operators with decades of proven operational success managing sovereign private islands in the Caribbean (Parrot Cay, 400 Ha) and South Pacific (Laucala, 1,400 Ha).</span>
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 2: PORTFOLIO ANALYSIS -->
+        <div id="content-portfolio" class="tab-content hidden space-y-8">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <h2 class="font-cinzel text-3xl font-bold text-ivory mb-3">
+                    <span class="lang-es">PORTFOLIO DE PROPIEDADES <span class="gold-gradient-text">EMBLEMÁTICAS</span></span>
+                    <span class="lang-en hidden">SIGNATURE PROPERTY <span class="gold-gradient-text">PORTFOLIO</span></span>
+                </h2>
+                <p class="text-xs md:text-sm text-gray-400">
+                    <span class="lang-es">La firma mantiene una escala hiper-exclusiva compuesta por resorts en islas privadas, santuarios culturales y hoteles urbanos boutique repartidos por 8 países.</span>
+                    <span class="lang-en hidden">The group operates a highly curated collection of private island resorts, cultural retreats, and urban sanctuary hotels across 8 countries.</span>
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                <!-- Property 1: Parrot Cay -->
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase">Isla Privada Caribe</span>
+                            <span class="text-xs text-gray-400 font-mono">Turks & Caicos</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Parrot Cay</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">El Estándar de Oro en Islas Privadas</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">Isla privada de 400 hectáreas con 61 habitaciones/suites y residencias privadas de celebridades (como Keith Richards y Donna Karan).</span>
+                            <span class="lang-en hidden">400-hectare private island with 61 keys + extensive high-value private estate residences.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones/Villas: <strong>~61 keys</strong></span>
+                        <span>Residencias de Marca: <strong>Sí</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 2: Laucala Island -->
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase">Isla Privada Pacífico</span>
+                            <span class="text-xs text-gray-400 font-mono">Fiyi (Fiji)</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Laucala Island</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Ultra-Lujo de Bajísima Densidad</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">Isla de 1.400 hectáreas con solo 25 residencias ultra-exclusivas sobre la playa y colinas, aeródromo propio y marina de aguas profundas.</span>
+                            <span class="lang-en hidden">1,400-hectare private island with only 25 ultra-luxury residences, private runway, and superyacht marina.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones/Villas: <strong>25 Villas</strong></span>
+                        <span>Pista de Aterrizaje: <strong>Sí</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 3: Shambhala Estate -->
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-shambhala-500/30 text-shambhala-400 text-[10px] font-bold uppercase">Flagship Wellness</span>
+                            <span class="text-xs text-gray-400 font-mono">Bali, Indonesia</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Shambhala Estate</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Santuario Medico-Holístico</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">Retiro de salud holística en la selva de Ubud con 30 suites y residencias orientadas a la medicina preventiva y la longevidad.</span>
+                            <span class="lang-en hidden">World-renowned medical-holistic wellness retreat in the Ubud jungle with 30 suites and private wellness residences.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones/Suites: <strong>30 keys</strong></span>
+                        <span>Especialidad: <strong>Longevidad</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 4: Uma Paro -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-[10px] font-bold uppercase">Cultural Sanctuary</span>
+                            <span class="text-xs text-gray-400 font-mono">Bután (Bhutan)</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Uma Paro</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Inmersión en el Himalaya</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">29 habitaciones y villas de lujo integradas arquitectónicamente en los valles sagrados de Bután.</span>
+                            <span class="lang-en hidden">29 luxury rooms and private villas architecturally integrated into the sacred valleys of Bhutan.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones/Villas: <strong>29 keys</strong></span>
+                        <span>Enfoque: <strong>Retiro Espiritual</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 5: Point Yamu -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-[10px] font-bold uppercase">Resort de Costa</span>
+                            <span class="text-xs text-gray-400 font-mono">Phuket, Tailandia</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Point Yamu</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Diseño de Paola Navone</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">79 habitaciones y suites más 27 villas privadas en península con vistas al Mar de Andamán.</span>
+                            <span class="lang-en hidden">79 rooms and suites plus 27 private luxury villas overlooking the Andaman Sea.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones/Villas: <strong>106 keys</strong></span>
+                        <span>Residencias de Marca: <strong>Sí</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 6: Metropolitan Urban -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-[10px] font-bold uppercase">Hotel Urbano Boutique</span>
+                            <span class="text-xs text-gray-400 font-mono">Londres / Singapur</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Metropolitan</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Santuarios Urbanos VIP</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">Hoteles boutique en Mayfair (Londres) y Singapur que conectan al grupo con el flujo de viajeros de alto patrimonio.</span>
+                            <span class="lang-en hidden">Boutique sanctuary hotels in Mayfair (London) and Singapore serving UHNW global travelers.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Ubicaciones: <strong>Mayfair & Orchard</strong></span>
+                        <span>Servicio: <strong>Mayordomía VIP</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 7: COMO The Treasury -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-[10px] font-bold uppercase">Heritage Hotel</span>
+                            <span class="text-xs text-gray-400 font-mono">Perth, Australia</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO The Treasury</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Edificio Patrimonial del Siglo XIX</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">48 habitaciones dentro del histórico edificio del State Treasury (1874) restaurado como hotel boutique urbano de referencia.</span>
+                            <span class="lang-en hidden">48 rooms inside the historic State Treasury Building (1874) restored as a benchmark urban boutique hotel.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Habitaciones: <strong>48 keys</strong></span>
+                        <span>Categoría: <strong>Heritage Luxury</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 8: COMO Maalifushi -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase">Isla Privada Índico</span>
+                            <span class="text-xs text-gray-400 font-mono">Maldivas</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Maalifushi</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Santuario Acuático de Lujo</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">65 villas sobre la playa y sobre el agua en el atolón de Thaa, el primer resort de lujo en el atolón más grande del sur de Maldivas.</span>
+                            <span class="lang-en hidden">65 overwater and beach villas in the Thaa Atoll, the first luxury resort in the southern Maldives' largest atoll.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Villas: <strong>65 keys</strong></span>
+                        <span>Especialidad: <strong>Diving & Surf</strong></span>
+                    </div>
+                </div>
+
+                <!-- Property 9: COMO Le Monde -->
+                <div class="glass-panel p-6 rounded-2xl relative flex flex-col justify-between">
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="px-2.5 py-1 rounded bg-gray-800 text-gray-300 text-[10px] font-bold uppercase">City Sanctuary</span>
+                            <span class="text-xs text-gray-400 font-mono">Bangkok · Miami</span>
+                        </div>
+                        <h3 class="font-cinzel text-xl font-bold text-ivory mb-1">COMO Uma Bangkok / COMO Metropolitan Miami</h3>
+                        <p class="text-xs text-gold-400 mb-4 font-medium">Expansión Urbana Reciente</p>
+
+                        <p class="text-xs text-gray-300 mb-4 font-light">
+                            <span class="lang-es">Aperturas recientes en Bangkok (Uma Bangkok, 2023) y Miami Beach (Metropolitan Miami Beach), consolidando presencia en capitales UHNW globales.</span>
+                            <span class="lang-en hidden">Recent openings in Bangkok (Uma Bangkok, 2023) and Miami Beach (Metropolitan Miami Beach), consolidating presence in global UHNW capitals.</span>
+                        </p>
+                    </div>
+                    <div class="pt-3 border-t border-gray-800 text-[11px] text-gray-400 flex justify-between">
+                        <span>Segmento: <strong>Urban Luxury</strong></span>
+                        <span>Tendencia: <strong>Expansión 2024+</strong></span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- TAB 3: PANAMA PROJECT STRATEGIC FIT -->
+        <div id="content-fit" class="tab-content hidden space-y-12">
+
+            <div class="glass-panel p-8 md:p-12 rounded-3xl border border-gold-500/30">
+                <div class="text-center max-w-3xl mx-auto mb-10">
+                    <span class="px-3 py-1 rounded bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs font-semibold uppercase tracking-widest block w-fit mx-auto mb-3">
+                        <span class="lang-es">Encaje Estratégico del Master Plan</span><span class="lang-en hidden">Master Plan Alignment</span>
+                    </span>
+                    <h2 class="font-cinzel text-2xl md:text-4xl font-bold text-ivory mb-4">
+                        <span class="lang-es">¿POR QUÉ COMO ES EL OPERADOR <span class="gold-gradient-text">IDEAL PARA LA PORCADA?</span></span>
+                        <span class="lang-en hidden">WHY COMO IS THE PERFECT OPERATOR <span class="gold-gradient-text">FOR LA PORCADA</span></span>
+                    </h2>
+                    <p class="text-xs md:text-sm text-gray-300 font-light">
+                        <span class="lang-es">EcoResort La Porcada (347 Ha · Pacífico panameño) coincide exactamente con los parámetros operativos donde COMO Group maximiza su valor de marca y rentabilidad.</span>
+                        <span class="lang-en hidden">EcoResort La Porcada (347 Ha · Panamanian Pacific) matches the exact operational parameters where COMO Group excels.</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                    <!-- Fit Item 1 -->
+                    <div class="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-500/20 flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex-shrink-0 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-plane-arrival"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-ivory mb-2">
+                                <span class="lang-es">Experiencia en Pista Privada & Aduanas</span>
+                                <span class="lang-en hidden">Runway & On-Island Customs Expertise</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                                <span class="lang-es">COMO ya opera <strong>COMO Laucala Island</strong> con aeródromo privado y aduana de Fiyi. Saben comercializar y operar una isla con soberanía logística completa.</span>
+                                <span class="lang-en hidden">COMO already operates <strong>COMO Laucala Island</strong> with its own airstrip and Fijian customs point. They possess unmatched private island aviation experience.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fit Item 2 -->
+                    <div class="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-500/20 flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex-shrink-0 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-heart-pulse"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-ivory mb-2">
+                                <span class="lang-es">Integradora Nativa de Longevidad</span>
+                                <span class="lang-en hidden">Native Longevity Flagship</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                                <span class="lang-es">El centro de longevidad de La Porcada puede convertirse en el <strong>COMO Shambhala Flagship de América Latina</strong>, atrayendo a miembros de EE. UU. y Sudamérica.</span>
+                                <span class="lang-en hidden">The project's wellness center can become the premier <strong>COMO Shambhala Longevity Hub for Latin America</strong>, targeting US and South American UHNWIs.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fit Item 3 -->
+                    <div class="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-500/20 flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex-shrink-0 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-house-circle-check"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-ivory mb-2">
+                                <span class="lang-es">Ventas de Residencias de Marca</span>
+                                <span class="lang-en hidden">Branded Residences Sales Velocity</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                                <span class="lang-es">En <em>COMO Parrot Cay</em>, las residencias privadas alcanzan precios récord. La firma garantiza la atracción de compradores para las 50 villas en condominio y las 8 mansiones.</span>
+                                <span class="lang-en hidden">At <em>COMO Parrot Cay</em>, private estates fetch record prices. COMO brings massive buyer prestige for the 50 coastal condos and 8 legacy mansions.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Fit Item 4 -->
+                    <div class="p-6 rounded-2xl bg-obsidian-900/90 border border-gold-500/20 flex gap-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-500/30 flex-shrink-0 flex items-center justify-center text-gold-400 text-xl">
+                            <i class="fa-solid fa-gem"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-ivory mb-2">
+                                <span class="lang-es">Modelo de Club Privado de Membresía</span>
+                                <span class="lang-en hidden">Private Members Club Integration</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                                <span class="lang-es">El concepto de "El Mar-a-Lago del Siglo XXI" encaja con la red de clientes leales de Christina Ong en Singapur, Londres y Nueva York, garantizando cuotas de membresía elevadas.</span>
+                                <span class="lang-en hidden">The "21st-Century Private Club" concept integrates seamlessly with Christina Ong's global network across London, New York, and Asia.</span>
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- DYNAMIC REVENUE & OCCUPANCY SIMULATOR -->
+            <div class="glass-panel p-8 rounded-3xl border border-gold-500/30">
+                <div class="text-center mb-8">
+                    <h3 class="font-cinzel text-xl font-bold text-gold-300 mb-2">
+                        <span class="lang-es">SIMULADOR DE RECURSOS & CUOTAS DE MEMBRESÍA · ECORESORT LA PORCADA</span>
+                        <span class="lang-en hidden">ECORESORT LA PORCADA · MEMBERSHIP & REVENUE SIMULATOR</span>
+                    </h3>
+                    <p class="text-xs text-gray-400">
+                        <span class="lang-es">Ajuste el número de miembros del club, cuota anual y tarifa mínima diaria (ADR) del resort para estimar el rendimiento financiero anual:</span>
+                        <span class="lang-en hidden">Adjust the number of club members, annual dues, and resort daily minimum rate (ADR) to estimate annual financial yield:</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-300 mb-2">
+                                <span><span class="lang-es">Número de Miembros del Club:</span><span class="lang-en hidden">Club Members:</span></span>
+                                <span id="val-members" class="text-gold-400">4.400 Miembros</span>
+                            </div>
+                            <input type="range" id="input-members" min="3500" max="5500" step="100" value="4400" oninput="updateSim()" class="w-full accent-gold-500 cursor-pointer">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-1">
+                                <span>3.500</span><span>5.500</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-300 mb-2">
+                                <span><span class="lang-es">Cuota Anual de Membresía (USD):</span><span class="lang-en hidden">Annual Member Dues (USD):</span></span>
+                                <span id="val-dues" class="text-gold-400">$75.000 USD</span>
+                            </div>
+                            <input type="range" id="input-dues" min="50000" max="100000" step="5000" value="75000" oninput="updateSim()" class="w-full accent-gold-500 cursor-pointer">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-1">
+                                <span>$50.000</span><span>$100.000</span>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs font-bold text-gray-300 mb-2">
+                                <span><span class="lang-es">Tarifa Diaria Mínima Resort (ADR USD):</span><span class="lang-en hidden">Resort Minimum Daily Rate (ADR USD):</span></span>
+                                <span id="val-adr" class="text-gold-400">$30.000 USD</span>
+                            </div>
+                            <input type="range" id="input-adr" min="8900" max="90000" step="100" value="30000" oninput="updateSim()" class="w-full accent-gold-500 cursor-pointer">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-1">
+                                <span>$8.900</span><span>$90.000</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-obsidian-950 p-6 rounded-2xl border border-gold-500/20 text-center space-y-4">
+                        <div>
+                            <span class="text-[11px] text-gray-400 uppercase tracking-widest block"><span class="lang-es">Ingresos Recurrentes por Membresías</span><span class="lang-en hidden">Annual Membership Dues Revenue</span></span>
+                            <span id="res-dues" class="font-cinzel text-2xl font-bold text-gold-400">$330.00 M USD</span>
+                        </div>
+                        <div class="border-t border-gray-800 pt-4">
+                            <span class="text-[11px] text-gray-400 uppercase tracking-widest block"><span class="lang-es">Ingreso Operativo Hotel (65% Ocupación)</span><span class="lang-en hidden">Hotel Operating Revenue (65% Occ)</span></span>
+                            <span id="res-hotel" class="font-cinzel text-2xl font-bold text-ivory">$1.069 M USD</span>
+                        </div>
+                        <div class="border-t border-gold-500/30 pt-4">
+                            <span class="text-xs text-gold-300 uppercase tracking-widest font-bold block"><span class="lang-es">Total Proyectado Recurrente Anual</span><span class="lang-en hidden">Total Annual Projected Recurring Yield</span></span>
+                            <span id="res-total" class="font-cinzel text-3xl font-extrabold text-gold-400">$1.399 M USD</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Note on Simulator parameters -->
+                <div class="mt-6 p-4 rounded-xl bg-obsidian-900/90 border border-gold-500/10 text-[10px] text-gray-400 leading-relaxed">
+                    <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                    <span class="lang-es"><strong>Parámetros del modelo EcoResort La Porcada:</strong> Rango de miembros 3.500–5.500 · Cuota anual $50.000–$100.000 USD · Tarifa mínima diaria del resort $8.900–$90.000 USD · Cálculo hotelero sobre 150 keys (100 suites + 50 overwater) a 65% ocupación anual · 365 días.</span>
+                    <span class="lang-en hidden"><strong>EcoResort La Porcada model parameters:</strong> Member range 3,500–5,500 · Annual dues $50,000–$100,000 USD · Resort minimum daily rate $8,900–$90,000 USD · Hotel revenue calculated on 150 keys (100 suites + 50 overwater) at 65% yearly occupancy · 365 days.</span>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 4: COMO VS AMAN MATRIX -->
+        <div id="content-matrix" class="tab-content hidden space-y-8">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <h2 class="font-cinzel text-3xl font-bold text-ivory mb-3">
+                    <span class="lang-es">MATRIZ COMPARATIVA: <span class="gold-gradient-text">COMO VS. AMAN</span></span>
+                    <span class="lang-en hidden">COMPARATIVE MATRIX: <span class="gold-gradient-text">COMO VS. AMAN</span></span>
+                </h2>
+                <p class="text-xs md:text-sm text-gray-400">
+                    <span class="lang-es">Análisis técnico de fortalezas para la negociación del Contrato de Gestión Hotelera (HMA) de EcoResort La Porcada:</span>
+                    <span class="lang-en hidden">Technical breakdown for the Hotel Management Agreement (HMA) negotiation of EcoResort La Porcada:</span>
+                </p>
+            </div>
+
+            <!-- Profile Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="logo-wrapper w-10 h-10" data-logo="como-matrix">
+                            <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                            <span class="logo-fallback w-10 h-10 rounded-md bg-gold-500/10 border border-gold-400/40 text-gold-400 text-sm">C</span>
+                        </div>
+                        <div>
+                            <h3 class="font-cinzel text-lg font-bold text-ivory">COMO GROUP</h3>
+                            <p class="text-[10px] text-gold-400 uppercase tracking-widest">Christina Ong · Singapur · 1972/1991</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 font-light leading-relaxed">
+                        <span class="lang-es">Firma familiar integrada verticalmente con foco en wellness holístico, gastronomía consciente y dominio de islas privadas. Filosofía "quiet luxury" —lujo sereno, nunca ostentoso—.</span>
+                        <span class="lang-en hidden">Vertically integrated family-owned firm focused on holistic wellness, conscious dining and private island mastery. "Quiet luxury" philosophy —serene luxury, never ostentatious—.</span>
+                    </p>
+                </div>
+
+                <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gray-600">
+                    <div class="flex items-center gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-md bg-gray-700/30 border border-gray-500/40 flex items-center justify-center text-gray-300 font-cinzel font-bold text-lg">A</div>
+                        <div>
+                            <h3 class="font-cinzel text-lg font-bold text-ivory">AMAN GROUP</h3>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Vladislav Doronin · Suiza · 1988</p>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-300 font-light leading-relaxed">
+                        <span class="lang-es">Cadena global de ultra-lujo (36+ propiedades) adquirida por Vladislav Doronin en 2014. Filosofía minimalista "Peaceful Sanctuary" y expansión agresiva con marca secundaria JANU hacia el segmento urbano.</span>
+                        <span class="lang-en hidden">Global ultra-luxury chain (36+ properties) acquired by Vladislav Doronin in 2014. Minimalist "Peaceful Sanctuary" philosophy and aggressive expansion with the JANU secondary brand into urban segments.</span>
+                    </p>
+                </div>
+            </div>
+
+            <div class="glass-panel rounded-3xl overflow-hidden border border-gold-500/30">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-obsidian-900 text-gold-300 font-cinzel border-b border-gold-500/30">
+                            <tr>
+                                <th class="p-4 md:p-6"><span class="lang-es">Criterio de Evaluación</span><span class="lang-en hidden">Evaluation Metric</span></th>
+                                <th class="p-4 md:p-6 bg-gold-500/10 text-gold-400 font-bold">COMO GROUP (Christina Ong)</th>
+                                <th class="p-4 md:p-6">AMAN GROUP (Vladislav Doronin)</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800 text-gray-300 font-light">
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Año de Fundación</span><span class="lang-en hidden">Year Founded</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">1972 (Club 21) · 1991 (Hoteles)</td>
+                                <td class="p-4 md:p-6">1988 (Amanpuri, Phuket)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Sede y Estructura Corporativa</span><span class="lang-en hidden">HQ & Corporate Structure</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">Singapur · Firma familiar privada</td>
+                                <td class="p-4 md:p-6">Zug (Suiza) / Moscú-Londres · Capital financiero (Centurion, Doronin)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Tamaño del Portfolio</span><span class="lang-en hidden">Portfolio Size</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">~15 propiedades · Curado y selectivo</td>
+                                <td class="p-4 md:p-6">36+ propiedades · Expansión agresiva (objetivo 50+ para 2027)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Track Record en Islas Privadas</span><span class="lang-en hidden">Private Island Track Record</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">
+                                    <i class="fa-solid fa-star text-gold-400 mr-1"></i> Líder Absoluto (Parrot Cay 400 Ha & Laucala 1.400 Ha)
+                                </td>
+                                <td class="p-4 md:p-6">Excelente (Amanpulo, Aman Sveti Stefan)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Marca de Longevidad & Spa</span><span class="lang-en hidden">Longevity & Spa Brand</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">
+                                    <strong>COMO Shambhala:</strong> Marca global consolidada independiente, medicina preventiva, ayurveda, yoga.
+                                </td>
+                                <td class="p-4 md:p-6"><strong>Aman Spa / JANU Wellness:</strong> Spa dentro del resort, sin marca wellness global propia.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Filosofía Gastronómica</span><span class="lang-en hidden">Gastronomic Philosophy</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300"><strong>COMO Cuisine:</strong> Nutrición bioactiva, huertos propios, enzimas vivas.</td>
+                                <td class="p-4 md:p-6">Restaurantes de autor con chefs estrella, enfoque gourmet clásico.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Postura ante Casino Privado</span><span class="lang-en hidden">Private Gaming Stance</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-emerald-400">
+                                    Flexible si se concibe como Private Members Gaming Club
+                                </td>
+                                <td class="p-4 md:p-6 text-amber-400">Muy restrictivo (requiere segregación estricta de marca)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Aduanas y Aviación Privada</span><span class="lang-en hidden">Customs & Private Aviation</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">
+                                    Operación activa de pistas privadas y aduana in-situ en Fiyi (Laucala)
+                                </td>
+                                <td class="p-4 md:p-6">Operación mediante aviación charteada (Aman Jet), sin aduana propia en isla.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Flexibilidad de Gestión HMA</span><span class="lang-en hidden">HMA Management Flexibility</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">
+                                    Alta apertura a copropiedad y modelos de club privado + membresía
+                                </td>
+                                <td class="p-4 md:p-6">Control corporativo estricto y centralizado, royalties más altos (base fee ~5-6%)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Residencias de Marca</span><span class="lang-en hidden">Branded Residences</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">Probado en Parrot Cay & Point Yamu · alta velocidad de venta UHNW</td>
+                                <td class="p-4 md:p-6">En expansión (Aman Residences), pero modelo más joven y sin historial largo.</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Cuota Membresía Privada</span><span class="lang-en hidden">Private Membership Dues</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">Compatible con cuotas $50K–$100K (rango EcoResort La Porcada)</td>
+                                <td class="p-4 md:p-6">Aman Club ($200K+) más restrictivo, menos miembros latinos</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Red de Clientes UHNW</span><span class="lang-en hidden">UHNW Client Network</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">Asia-Pacífico (Singapur) + Londres + NY vía Club 21 + COMO Hotels</td>
+                                <td class="p-4 md:p-6">Europa + EE.UU. + Rusia/ME, fuerte con jet-set financiero</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Sostenibilidad y Conservación</span><span class="lang-en hidden">Sustainability & Conservation</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">COMO Foundation · filantropía integrada y programas locales</td>
+                                <td class="p-4 md:p-6">Aman Future Foundation (creada más tarde), menos arraigada operativamente</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-6 font-bold text-ivory"><span class="lang-es">Cuota Base Fee HMA</span><span class="lang-en hidden">HMA Base Fee</span></td>
+                                <td class="p-4 md:p-6 bg-gold-500/5 font-semibold text-gold-300">~3–4% sobre ingresos brutos (más competitivo)</td>
+                                <td class="p-4 md:p-6">~5–6% sobre ingresos brutos + incentivos comerciales</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="glass-panel p-6 rounded-2xl border border-gold-500/20 text-center">
+                <span class="text-xs uppercase tracking-widest text-gold-400 font-bold block mb-1">Conclusión del Análisis Comparativo</span>
+                <p class="text-xs text-gray-300 font-light max-w-4xl mx-auto">
+                    <span class="lang-es">Mientras que Aman aporta un valor innegable en ultra-privacidad pura y un tamaño de red superior, <strong>COMO Group ofrece un encaje operativo superior para EcoResort La Porcada</strong> gracias a: (1) su dominio probado de pistas aéreas y aduanas en islas privadas (Laucala), (2) el músculo global de <em>COMO Shambhala</em> para el centro de longevidad, (3) una mayor apertura comercial hacia el modelo de Club Privado con cuotas de membresía, y (4) una estructura de HMA más flexible y alineada con el promotor TAKYMA.</span>
+                    <span class="lang-en hidden">While Aman brings immense prestige and a larger network, <strong>COMO Group offers a superior operational fit for EcoResort La Porcada</strong> due to: (1) proven airstrip/customs experience on Laucala Island, (2) COMO Shambhala's longevity dominance, (3) greater commercial alignment with the Private Members Club model and dues structure, and (4) a more flexible HMA structure aligned with the promoter TAKYMA.</span>
+                </p>
+            </div>
+        </div>
+
+        <!-- TAB 5: CORPORATE PITCH & OUTREACH TO COMO GROUP -->
+        <div id="content-contact" class="tab-content hidden space-y-8">
+            <div class="text-center max-w-3xl mx-auto">
+                <h2 class="font-cinzel text-3xl font-bold text-ivory mb-3">
+                    <span class="lang-es">CANALES DIRECTOS DE <span class="gold-gradient-text">DESARROLLO & CONTACTO</span></span>
+                    <span class="lang-en hidden">CORPORATE DEVELOPMENT & <span class="gold-gradient-text">OUTREACH PROTOCOL</span></span>
+                </h2>
+                <p class="text-xs md:text-sm text-gray-400">
+                    <span class="lang-es">Datos corporativos del departamento de Adquisiciones y Desarrollo de COMO Hotels & Resorts para la propuesta de EcoResort La Porcada:</span>
+                    <span class="lang-en hidden">Official contact details for COMO Hotels & Resorts Development and Acquisitions Team for the EcoResort La Porcada proposal:</span>
+                </p>
+            </div>
+
+            <!-- Contact Information Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+
+                <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-gold-500 space-y-4">
+                    <div class="flex items-center gap-3 text-gold-400">
+                        <i class="fa-solid fa-building text-xl"></i>
+                        <h3 class="font-cinzel text-lg font-bold text-ivory">COMO Group Global HQ (Singapore)</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-300 font-light">
+                        <li><strong>Dirección:</strong> 541 Orchard Road, #16-00 Liat Towers, Singapore 238881</li>
+                        <li><strong>Teléfono Central:</strong> +65 6304 1488</li>
+                        <li><strong>Email Desarrollo Global:</strong> <span class="text-gold-300 font-mono">development@comohotels.com</span></li>
+                    </ul>
+                </div>
+
+                <div class="glass-panel p-8 rounded-2xl border-l-4 border-l-gold-500 space-y-4">
+                    <div class="flex items-center gap-3 text-gold-400">
+                        <i class="fa-solid fa-earth-americas text-xl"></i>
+                        <h3 class="font-cinzel text-lg font-bold text-ivory">COMO Hotels Development (EMEA / Americas)</h3>
+                    </div>
+                    <ul class="space-y-2 text-xs text-gray-300 font-light">
+                        <li><strong>Dirección:</strong> 19 Old Park Lane, Mayfair, London W1K 1LB, UK</li>
+                        <li><strong>Teléfono Londres:</strong> +44 20 7447 1000</li>
+                        <li><strong>Email HMA & Licensing:</strong> <span class="text-gold-300 font-mono">develop.americas@comohotels.com</span></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- PITCH EMAIL GENERATOR -->
+            <div class="glass-panel p-8 rounded-3xl border border-gold-500/30">
+                <div class="text-center mb-6">
+                    <h3 class="font-cinzel text-xl font-bold text-ivory mb-2">
+                        <span class="lang-es">GENERADOR DE EMAIL EJECUTIVO PARA COMO GROUP</span>
+                        <span class="lang-en hidden">EXECUTIVE PITCH GENERATOR FOR COMO GROUP</span>
+                    </h3>
+                    <p class="text-xs text-gray-400">
+                        <span class="lang-es">Borrador formal en inglés para enviar la propuesta a `development@comohotels.com`:</span>
+                        <span class="lang-en hidden">Formal pitch email ready for submission to `development@comohotels.com`:</span>
+                    </p>
+                </div>
+
+                <div class="bg-obsidian-950 p-6 rounded-2xl border border-gold-500/20 font-mono text-xs text-gray-300 leading-relaxed overflow-x-auto relative mb-6">
+                    <pre id="como-pitch-text" class="whitespace-pre-wrap">SUBJECT: HMA & Licensing Opportunity: EcoResort La Porcada — 347-Ha Private Island Resort, Airstrip & Custom Office (Pacific Panama)
+
+Dear COMO Hotels & Resorts Development Team,
+
+On behalf of TAKYMA Investment Pioneer (project promoter), we are pleased to present a confidential Hotel Management Agreement (HMA) opportunity for EcoResort La Porcada, a groundbreaking ultra-luxury private island resort project located in the Pacific of Panama.
+
+PROJECT SPECIFICATIONS & COMO FIT:
+- Master Plan Footprint: 347-Hectare private island with a strict 5% low-density limit (225,000 sqm), preserving 95% as pristine primary nature reserve.
+- Autonomous Sovereign Infrastructure: Dedicated On-Island Customs & Immigration Station, Private Airstrip, 2 Deep-Water Superyacht Marinas, and VIP Helipad.
+- Planned Inventory: 100 Ultra-Luxury Suites, 50 Overwater Bungalows, 50 Coastal Condominium Villas, and 8 Standalone Legacy Mansions.
+- Core Wellness Anchor: Flagship Longevity & Preventive Bio-Hacking Center (Ideal candidate for COMO Shambhala Latin America Flagship).
+- Membership & Gaming: Private Members-Only Gaming Club & Maritime Sanctuary Club ("The 21st-Century Mar-a-Lago of the Pacific"). Member range 3,500–5,500 with annual dues $50,000–$100,000 USD; resort minimum daily rate $8,900–$90,000 USD.
+
+Given COMO's legendary operational success in sovereign private islands (COMO Parrot Cay & COMO Laucala Island), we believe EcoResort La Porcada represents the premier location for COMO's expansion in the Americas and a natural Latin American flagship for COMO Shambhala.
+
+We welcome an exploratory video conference with your Global Acquisitions and Development leadership, and with Mrs. Christina Ong's strategic committee where appropriate.
+
+Sincerely,
+TAKYMA Investment Pioneer — Strategic Development Committee
+Promoter of EcoResort La Porcada · Panama Pacific</pre>
+                </div>
+
+                <div class="text-center">
+                    <button onclick="copyComoPitch()" class="px-8 py-4 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-400 hover:to-gold-500 text-obsidian-950 font-bold rounded-xl shadow-lg transition-all text-xs uppercase tracking-widest inline-flex items-center gap-3">
+                        <i class="fa-solid fa-copy"></i>
+                        <span class="lang-es">Copiar Email al Portapapeles</span>
+                        <span class="lang-en hidden">Copy Pitch Email to Clipboard</span>
+                    </button>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 6: ARCHITECTURE & HMA COMPENSATION STRUCTURE -->
+        <div id="content-arch" class="tab-content hidden space-y-10">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="px-3 py-1 rounded bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs font-semibold uppercase tracking-widest block w-fit mx-auto mb-3">
+                    <span class="lang-es">Arquitectos & Estructura HMA</span><span class="lang-en hidden">Architects & HMA Structure</span>
+                </span>
+                <h2 class="font-cinzel text-3xl font-bold text-ivory mb-3">
+                    <span class="lang-es">ARQUITECTOS QUE DISEÑAN LOS <span class="gold-gradient-text">COMPLEJOS COMO</span></span>
+                    <span class="lang-en hidden">ARCHITECTS BEHIND <span class="gold-gradient-text">COMO COMPLEXES</span></span>
+                </h2>
+                <p class="text-xs md:text-sm text-gray-400">
+                    <span class="lang-es">Los estudios y maestros de la arquitectura que han dado forma al portfolio COMO Hotels & Resorts, y la estructura detallada de retribución del contrato HMA propuesto para EcoResort La Porcada.</span>
+                    <span class="lang-en hidden">The architects and studios that have shaped the COMO Hotels & Resorts portfolio, plus the detailed HMA compensation structure proposed for EcoResort La Porcada.</span>
+                </p>
+            </div>
+
+            <!-- A. ARCHITECT BIOS GRID -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400">
+                        <i class="fa-solid fa-compass-drafting"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory">
+                        <span class="lang-es">A · Arquitectos y Diseñadores <span class="gold-gradient-text">Clave de COMO</span></span>
+                        <span class="lang-en hidden">A · COMO's Key <span class="gold-gradient-text">Architects & Designers</span></span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    <!-- Cheong Yew Kuan -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Cheong Yew Kuan</h4>
+                            <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 text-[9px] font-bold uppercase">Arquitecto</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Singapur · AreaDesigns (estudio propio, años 90)</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">El arquitecto más estrechamente vinculado al ADN COMO. Comenzó su carrera en 1990 con <strong>Kerry Hill Architects</strong> en Singapur y fundó <em>AreaDesigns</em> a mediados de los 90. Lleva más de 20 años colaborando con Christina Ong y ha diseñado también las residencias privadas de Donna Karan y de la propia Christina Ong.</span>
+                            <span class="lang-en hidden">The architect most closely tied to COMO's DNA. Began his career in 1990 with <strong>Kerry Hill Architects</strong> in Singapore and founded <em>AreaDesigns</em> in the mid-90s. He has collaborated with Christina Ong for over 20 years and designed the private residences of Donna Karan and Christina Ong herself.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Parrot Cay (Turks & Caicos)</li>
+                                <li>• COMO Cocoa Island (Maldivas, renovación 2020)</li>
+                                <li>• COMO Uma Paro (Bután)</li>
+                                <li>• COMO Uma Ubud (Bali)</li>
+                                <li>• COMO Shambhala Estate (Bali)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Koichiro Ikebuchi -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Koichiro Ikebuchi</h4>
+                            <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 text-[9px] font-bold uppercase">Arquitecto</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Osaka 1965 · Activo en Singapur</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Arquitecto e interiorista japonés formado en Osaka y avecindado en Singapur. Su sello es la <strong>sensibilidad hacia la naturaleza</strong> y el respeto por la autenticidad cultural. Materiales característicos: techos altos, suelos de teca, pino de Nueva Zelanda y cubiertas de paja Kajan.</span>
+                            <span class="lang-en hidden">Japanese architect and interior designer trained in Osaka and based in Singapore. His hallmark is <strong>sensitivity to nature</strong> and respect for cultural authenticity. Signature materials: high rafters, teak floors, New Zealand pine and Kajan thatched roofs.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Maalifushi (Maldivas, 2014)</li>
+                                <li class="text-gray-500">— Su primer proyecto en Maldivas</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Paola Navone -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Paola Navone</h4>
+                            <span class="px-2 py-0.5 rounded bg-shambhala-500/30 text-shambhala-400 text-[9px] font-bold uppercase">Interiorista</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Italia · Estudio OTTO</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Diseñadora y arquitecta italiana con un lenguaje ecléctico que combina elementos mediterráneos y asiáticos. Para COMO Point Yamu creó un vocabulario <strong>mediterráneo-tailandés</strong> de luz y textura que difumina el límite entre interior y exterior.</span>
+                            <span class="lang-en hidden">Italian designer and architect with an eclectic language combining Mediterranean and Asian elements. For COMO Point Yamu she created a <strong>Mediterranean-Thai vocabulary</strong> of light and texture that blurs the boundary between inside and outside.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Point Yamu (Phuket, Tailandia)</li>
+                                <li>• Varios proyectos de interiorismo COMO</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Keith Hobbs -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Keith Hobbs</h4>
+                            <span class="px-2 py-0.5 rounded bg-shambhala-500/30 text-shambhala-400 text-[9px] font-bold uppercase">Interiorista</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Reino Unido · United Designers</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Decorador de interiores británico, fundador de <em>United Designers</em>. Diseñó el <strong>COMO Shambhala Retreat de Parrot Cay</strong> combinando la estética relajada de una casa de playa con un estilo contemporáneo sereno y depurado.</span>
+                            <span class="lang-en hidden">British interior decorator, founder of <em>United Designers</em>. He designed the <strong>COMO Shambhala Retreat at Parrot Cay</strong> blending a relaxed beach house aesthetic with serene contemporary style.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Shambhala Retreat, Parrot Cay</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Kathryn Kng -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Kathryn Kng</h4>
+                            <span class="px-2 py-0.5 rounded bg-shambhala-500/30 text-shambhala-400 text-[9px] font-bold uppercase">Interiorista</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Singapur</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Diseñadora de interiores singapurense que trabajó en equipo con Cheong Yew Kuan en <strong>COMO Uma Paro</strong> (Bután), logrando una integración perfecta entre la arquitectura tradicional butanesa (dzongs) y el confort contemporáneo de lujo.</span>
+                            <span class="lang-en hidden">Singaporean interior designer who teamed up with Cheong Yew Kuan on <strong>COMO Uma Paro</strong> (Bhutan), achieving a perfect integration between traditional Bhutanese architecture (dzongs) and contemporary luxury comfort.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Uma Paro (Bután) — junto a Cheong Yew Kuan</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- WATG + Lynne Hunt London (Laucala) -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">WATG + Lynne Hunt London</h4>
+                            <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 text-[9px] font-bold uppercase">Equipo</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">EE.UU. + Reino Unido · 2004-2008</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Equipo multidisciplinar que diseñó <strong>COMO Laucala Island</strong> (Fiyi, 1.600 Ha, 25 villas "bures"): <em>WATG</em> (arquitectura), <em>Lynne Hunt London</em> (interiorismo), <em>Scape Design Associates</em> (paisajismo) y <em>Architects Pacific</em> (arquitecto local). Reinterpretaron la cabaña fiyiana tradicional con materiales locales (paja de sagu, madera doga, tejido de cáscara de coco).</span>
+                            <span class="lang-en hidden">Multidisciplinary team that designed <strong>COMO Laucala Island</strong> (Fiji, 1,600 Ha, 25 "bure" villas): <em>WATG</em> (architecture), <em>Lynne Hunt London</em> (interiors), <em>Scape Design Associates</em> (landscape) and <em>Architects Pacific</em> (local architect). They reinterpreted the traditional Fijian hut using local materials (sago palm thatch, doga timber, coconut husk weave).</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Laucala Island (Fiyi, 2008)</li>
+                                <li class="text-gray-500">— Premiado Condé Nast Traveler 2016</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Bonetti/Kozerski -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Bonetti / Kozerski</h4>
+                            <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 text-[9px] font-bold uppercase">Estudio</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">EE.UU. · Design & Architecture Studio</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Estudio internacional de diseño y arquitectura responsable de la <strong>Caribbean Estate de Donna Karan</strong> en Parrot Cay — un complejo familiar de seis edificios (casa principal, dos casas de invitados, pabellón, cabaña de yoga y spa) construidos en madera y piedra de coral, en colaboración con Cheong Yew Kuan.</span>
+                            <span class="lang-en hidden">International design and architecture studio responsible for <strong>Donna Karan's Caribbean Estate</strong> at Parrot Cay — a six-building family compound (main house, two guest houses, pavilion, yoga hut and spa) built in wood and coral stone, in collaboration with Cheong Yew Kuan.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras en COMO Parrot Cay:</span><span class="lang-en hidden">Works at COMO Parrot Cay:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• Caribbean Estate (Donna Karan)</li>
+                                <li>• En colaboración con AreaDesigns (CYK)</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Coopers Hill (masterplanning) -->
+                    <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500 glass-panel-hover transition-all">
+                        <div class="flex items-start justify-between mb-3">
+                            <h4 class="font-cinzel text-lg font-bold text-ivory">Coopers Hill</h4>
+                            <span class="px-2 py-0.5 rounded bg-gold-500/20 text-gold-300 text-[9px] font-bold uppercase">Masterplanning</span>
+                        </div>
+                        <p class="text-[10px] text-gold-400 mb-3 font-medium uppercase tracking-wider">Reino Unido</p>
+                        <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                            <span class="lang-es">Estudio británico que jugó un papel decisivo en la <strong>creación de los cimientos de COMO Laucala Island</strong>, desde las fases más tempranas del masterplan hasta el día de la apertura. Especialistas en planificación integral de resorts de ultra-lujo.</span>
+                            <span class="lang-en hidden">British studio that played a decisive role in <strong>creating the foundations of COMO Laucala Island</strong>, from the earliest stages of the masterplan to opening day. Specialists in integrated ultra-luxury resort planning.</span>
+                        </p>
+                        <div class="border-t border-gray-800 pt-3 space-y-1 text-[10px] text-gray-400">
+                            <p><i class="fa-solid fa-location-dot text-gold-400 mr-1"></i> <span class="lang-es">Obras COMO:</span><span class="lang-en hidden">COMO Works:</span></p>
+                            <ul class="pl-4 space-y-0.5">
+                                <li>• COMO Laucala Island — Masterplanning</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- B. DESIGN PHILOSOPHY -->
+            <div class="glass-panel p-8 md:p-10 rounded-3xl border border-gold-500/30">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400">
+                        <i class="fa-solid fa-feather"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory">
+                        <span class="lang-es">B · Filosofía de Diseño <span class="gold-gradient-text">COMO</span></span>
+                        <span class="lang-en hidden">B · COMO Design <span class="gold-gradient-text">Philosophy</span></span>
+                    </h3>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 text-xs text-gray-300 font-light leading-relaxed">
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/10">
+                        <h4 class="font-cinzel text-base font-bold text-gold-300 mb-2"><i class="fa-solid fa-mountain-sun text-gold-400 mr-2"></i>Integration with Nature</h4>
+                        <p><span class="lang-es">Los edificios COMO no compiten con el paisaje: lo amplifican. En Laucala, los árboles antiguos atraviesan los techos; en Maalifushi, las ventanas de suelo a techo conectan cada habitación con el mar. Como dice Cheong Yew Kuan: <em>"el lujo es la simplicidad: cosas simples hechas especiales a través del ritual"</em>.</span>
+                        <span class="lang-en hidden">COMO buildings do not compete with the landscape: they amplify it. At Laucala, ancient trees grow through roofs; at Maalifushi, floor-to-ceiling windows connect every room to the sea.</span></p>
+                    </div>
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/10">
+                        <h4 class="font-cinzel text-base font-bold text-gold-300 mb-2"><i class="fa-solid fa-globe text-gold-400 mr-2"></i>Vernacular Reinterpretation</h4>
+                        <p><span class="lang-es">Cada resort reinterpretación contemporánea de la arquitectura local: cabañas "bures" fiyianas (Laucala), dzongs butaneses (Uma Paro), paja Kajan maldiva (Maalifushi), coral stone caribeño (Parrot Cay). Materiales locales y artesanía tradicional.</span>
+                        <span class="lang-en hidden">Each resort is a contemporary reinterpretation of local architecture: Fijian "bures" (Laucala), Bhutanese dzongs (Uma Paro), Maldivian Kajan thatch (Maalifushi), Caribbean coral stone (Parrot Cay).</span></p>
+                    </div>
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/10">
+                        <h4 class="font-cinzel text-base font-bold text-gold-300 mb-2"><i class="fa-solid fa-yin-yang text-gold-400 mr-2"></i>Balinese Cosmology</h4>
+                        <p><span class="lang-es">En las propiedades de Bali, Cheong Yew Kuan orienta los santuarios y las estancias principales hacia el <strong>Monte Agung</strong> (centro sagrado), siguiendo el Asta Kosala-Kosali — el sistema tradicional de proporciones donde el sacerdote diseña las casas con medidas del cuerpo del propietario, como alta costura a medida.</span>
+                        <span class="lang-en hidden">At the Bali properties, Cheong Yew Kuan orients shrines and main rooms towards <strong>Mount Agung</strong> (sacred center), following Asta Kosala-Kosali — the traditional proportions system.</span></p>
+                    </div>
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/10">
+                        <h4 class="font-cinzel text-base font-bold text-gold-300 mb-2"><i class="fa-solid fa-hand-holding-heart text-gold-400 mr-2"></i>Quiet Luxury</h4>
+                        <p><span class="lang-es">Estética <em>quiet luxury</em>: elegancia no ostentosa, materiales nobles, paleta cromática serena, iluminación que emula la luz de la luna (Laucala). El detalle artesanal — bañeras talladas en un solo bloque de granito, lámparas-medusa en fibra de coco — sustituye al brillo del lujo convencional.</span>
+                        <span class="lang-en hidden"><em>Quiet luxury</em> aesthetic: understated elegance, noble materials, serene color palette, lighting that emulates moonlight (Laucala).</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- C. HMA COMPENSATION STRUCTURE -->
+            <div>
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 rounded-xl bg-gold-500/10 border border-gold-400/30 flex items-center justify-center text-gold-400">
+                        <i class="fa-solid fa-scale-balanced"></i>
+                    </div>
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory">
+                        <span class="lang-es">C · Estructura de <span class="gold-gradient-text">Retribución HMA</span></span>
+                        <span class="lang-en hidden">C · HMA <span class="gold-gradient-text">Compensation Structure</span></span>
+                    </h3>
+                </div>
+
+                <p class="text-xs text-gray-300 font-light mb-6 leading-relaxed max-w-4xl">
+                    <span class="lang-es">El Contrato de Gestión Hotelera (<strong>HMA</strong>) es el instrumento mediante el cual el propietario (TAKYMA / EcoResort La Porcada) delega la operación diaria del resort en COMO Hotels & Resorts. La retribución del operador se estructura en dos canales principales — <strong>Base Fee</strong> (sobre ingresos brutos) e <strong>Incentive Fee</strong> (sobre beneficio operativo) — más una serie de cargos accesorios y cláusulas de control.</span>
+                    <span class="lang-en hidden">The Hotel Management Agreement (<strong>HMA</strong>) is the instrument by which the owner (TAKYMA / EcoResort La Porcada) delegates daily operation of the resort to COMO Hotels & Resorts. Operator compensation is structured across two main channels — <strong>Base Fee</strong> (on gross revenues) and <strong>Incentive Fee</strong> (on operating profit) — plus ancillary charges and control clauses.</span>
+                </p>
+
+                <div class="glass-panel rounded-3xl overflow-hidden border border-gold-500/30">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-obsidian-900 text-gold-300 font-cinzel border-b border-gold-500/30">
+                                <tr>
+                                    <th class="p-4 md:p-5"><span class="lang-es">Concepto Retributivo</span><span class="lang-en hidden">Fee Concept</span></th>
+                                    <th class="p-4 md:p-5"><span class="lang-es">Rango Habitual</span><span class="lang-en hidden">Standard Range</span></th>
+                                    <th class="p-4 md:p-5 bg-gold-500/10 text-gold-400 font-bold"><span class="lang-es">Propuesta EcoResort La Porcada</span><span class="lang-en hidden">EcoResort La Porcada Proposal</span></th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-800 text-gray-300 font-light">
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Base Management Fee</span><span class="lang-en hidden">Base Management Fee</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">% sobre ingresos brutos (Total Revenues)</span><span class="lang-en hidden">% of gross revenues</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">2,0 % – 4,0 %</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">3,0 % (negociable hasta 2,5 %)</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Incentive Fee</span><span class="lang-en hidden">Incentive Fee</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">% sobre beneficio operativo bruto (GOP)</span><span class="lang-en hidden">% of Gross Operating Profit</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">8 % – 10 %</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">8,5 % con GOP hurdle rate 35 %</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Initial Signing / Onboarding Fee</span><span class="lang-en hidden">Initial Signing / Onboarding Fee</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Pago único al cierre del HMA</span><span class="lang-en hidden">One-time payment at HMA closing</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">$500K – $2,0 M</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">$1,2 M USD</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Marketing, Sales & Reservation Fee</span><span class="lang-en hidden">Marketing, Sales & Reservation Fee</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Cargo sobre ingresos de habitaciones</span><span class="lang-en hidden">% of room revenues</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">2,0 % – 3,5 %</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">2,5 %</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">FF&E Reserve</span><span class="lang-en hidden">FF&E Reserve</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Fondo de reposición mobiliario/equipamiento</span><span class="lang-en hidden">Furniture, Fixtures & Equipment replacement reserve</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">3,0 % – 5,0 %</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">4,0 % (cuenta fiduciaria owner-controlled)</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Royalty / Brand Licensing Fee</span><span class="lang-en hidden">Royalty / Brand Licensing Fee</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Uso de marca COMO + COMO Shambhala</span><span class="lang-en hidden">COMO + COMO Shambhala brand use</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">1,0 % – 2,0 %</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">1,5 % (incluye Shambhala Flagship LATAM)</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Term / Duración del HMA</span><span class="lang-en hidden">HMA Term</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Plazo inicial + renovaciones</span><span class="lang-en hidden">Initial term + renewals</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">10 – 30 años</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">15 años + 2 × 5 años renovación</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Area of Protection (AOP)</span><span class="lang-en hidden">Area of Protection (AOP)</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Restricción territorial exclusiva</span><span class="lang-en hidden">Territorial exclusivity</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">50 – 200 km / país</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">Exclusividad Panamá + 200 km radio</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Performance Test / Exit Clause</span><span class="lang-en hidden">Performance Test / Exit Clause</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Derecho de terminación por bajo desempeño</span><span class="lang-en hidden">Termination right for underperformance</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">Año 3 / 4 / 5</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">Test año 3 (RevPAR vs competencia) + año 5 GOP</td>
+                                </tr>
+
+                                <tr>
+                                    <td class="p-4 md:p-5 font-bold text-ivory">
+                                        <span class="lang-es">Cap Aggregate Fees</span><span class="lang-en hidden">Aggregate Fee Cap</span>
+                                        <p class="text-[10px] text-gray-500 font-normal mt-1"><span class="lang-es">Techo total base + incentive</span><span class="lang-en hidden">Total cap base + incentive</span></p>
+                                    </td>
+                                    <td class="p-4 md:p-5">No siempre</td>
+                                    <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">Cap 12 % sobre Total Revenues</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Key Notes -->
+                <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="p-4 rounded-xl bg-obsidian-900/90 border border-gold-500/10 text-[10px] text-gray-400 leading-relaxed">
+                        <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                        <span class="lang-es"><strong>Base Fee:</strong> cubre los costes centrales del operador (equipo corporativo, formación, supervisión). Se cobra <em>independientemente de la rentabilidad</em>. Para resorts ultra-lujo el rango habitual es 3-4 %.</span>
+                        <span class="lang-en hidden"><strong>Base Fee:</strong> covers the operator's central costs (corporate team, training, supervision). Charged <em>regardless of profitability</em>.</span>
+                    </div>
+                    <div class="p-4 rounded-xl bg-obsidian-900/90 border border-gold-500/10 text-[10px] text-gray-400 leading-relaxed">
+                        <i class="fa-solid fa-circle-info text-gold-400 mr-1"></i>
+                        <span class="lang-es"><strong>Incentive Fee:</strong> alinea el interés del operador con el del propietario. Suele calcularse sobre GOP (Gross Operating Profit) con un <em>hurdle rate</em> mínimo del 30-40 % antes de activarse.</span>
+                        <span class="lang-en hidden"><strong>Incentive Fee:</strong> aligns operator interest with the owner's. Usually calculated on GOP with a minimum 30-40% hurdle rate.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- D. PROJECTED COMPENSATION FOR ECORESORT LA PORCADA -->
+            <div class="glass-panel p-8 rounded-3xl border border-gold-500/30">
+                <div class="text-center mb-6">
+                    <h3 class="font-cinzel text-xl font-bold text-gold-300 mb-2">
+                        <span class="lang-es">D · RETRIBUCIÓN PROYECTADA PARA ECORESORT LA PORCADA</span>
+                        <span class="lang-en hidden">D · PROJECTED COMPENSATION FOR ECORESORT LA PORCADA</span>
+                    </h3>
+                    <p class="text-xs text-gray-400">
+                        <span class="lang-es">Estimación anual basada en el simulador (escenario base: 4.400 miembros · $75.000 cuota · $30.000 ADR):</span>
+                        <span class="lang-en hidden">Annual estimate based on the simulator (base scenario: 4,400 members · $75,000 dues · $30,000 ADR):</span>
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                    <div class="bg-obsidian-950 p-5 rounded-2xl border border-gold-500/20 text-center">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Ingresos Brutos Anuales</span><span class="lang-en hidden">Annual Gross Revenues</span></span>
+                        <span class="font-cinzel text-lg font-bold text-ivory">$1.399 M</span>
+                    </div>
+                    <div class="bg-obsidian-950 p-5 rounded-2xl border border-gold-500/20 text-center">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Base Fee (3,0 %)</span><span class="lang-en hidden">Base Fee (3.0%)</span></span>
+                        <span class="font-cinzel text-lg font-bold text-gold-300">$41,97 M</span>
+                    </div>
+                    <div class="bg-obsidian-950 p-5 rounded-2xl border border-gold-500/20 text-center">
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Incentive Fee (8,5 % GOP)</span><span class="lang-en hidden">Incentive Fee (8.5% GOP)</span></span>
+                        <span class="font-cinzel text-lg font-bold text-gold-300">$47,57 M</span>
+                    </div>
+                    <div class="bg-obsidian-950 p-5 rounded-2xl border border-gold-400/40 text-center">
+                        <span class="text-[10px] text-gold-400 uppercase tracking-widest font-bold block mb-1"><span class="lang-es">Retribución Total Operador</span><span class="lang-en hidden">Total Operator Compensation</span></span>
+                        <span class="font-cinzel text-xl font-extrabold text-gold-400">~$137 M/año</span>
+                        <span class="text-[9px] text-gray-500 block mt-1"><span class="lang-es">incl. marketing + royalty</span><span class="lang-en hidden">incl. marketing + royalty</span></span>
+                    </div>
+                </div>
+
+                <div class="p-4 rounded-xl bg-obsidian-900/90 border border-gold-500/10 text-[11px] text-gray-400 leading-relaxed">
+                    <i class="fa-solid fa-calculator text-gold-400 mr-1"></i>
+                    <span class="lang-es"><strong>Cálculo de ejemplo (escenario base del simulador):</strong> Sobre $1.399 M de ingresos brutos recurrentes (membresías + hotel 65 % ocupación), el <strong>Base Fee 3,0 % = $41,97 M</strong>. Asumiendo un GOP del ~40 % sobre ingresos ($559,6 M), el <strong>Incentive Fee 8,5 % = $47,57 M</strong>. Sumando Marketing Fee 2,5 % sobre ingresos de habitaciones (~$26,6 M) + Royalty 1,5 % sobre ingresos totales (~$21,0 M), la <strong>retribución total estimada de COMO Group sería de aproximadamente $137,1 M USD/año</strong>, equivalente al 9,8 % de los ingresos brutos — dentro del cap negociado del 12 %. El FF&E Reserve 4 % (~$56 M) se custodia en cuenta fiduciaria controlada por el propietario y no se considera retribución del operador.</span>
+                    <span class="lang-en hidden"><strong>Example calculation (base scenario):</strong> On $1,399 M of recurring gross revenues, <strong>Base Fee 3.0% = $41.97 M</strong>. Assuming GOP of ~40% on revenues ($559.6 M), <strong>Incentive Fee 8.5% = $47.57 M</strong>. Adding Marketing Fee 2.5% on room revenues (~$26.6 M) + Royalty 1.5% on total revenues (~$21.0 M), <strong>total COMO Group compensation would be approximately $137.1 M USD/year</strong>, equivalent to 9.8% of gross revenues — within the negotiated 12% cap. The 4% FF&E Reserve (~$56 M) is held in an owner-controlled fiduciary account and is not considered operator compensation.</span>
+                </div>
+
+                <!-- Recommendation Box -->
+                <div class="mt-6 p-5 rounded-2xl bg-gradient-to-br from-gold-500/10 to-shambhala-500/10 border border-gold-500/30">
+                    <div class="flex items-start gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-gold-500/20 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0">
+                            <i class="fa-solid fa-lightbulb"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-base font-bold text-gold-300 mb-2">
+                                <span class="lang-es">Recomendación Estratégica TAKYMA</span>
+                                <span class="lang-en hidden">TAKYMA Strategic Recommendation</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed">
+                                <span class="lang-es">Negociar un <strong>Base Fee en el rango bajo (2,5-3,0 %)</strong> a cambio de ceder a COMO un <strong>Incentive Fee más alto (hasta 10 %)</strong> con GOP hurdle rate del 35 % — esto alinea a COMO con la rentabilidad del proyecto y no solo con los ingresos. Exigir <strong>Performance Test en año 3</strong> (RevPAR vs. set competitivo COMO Parrot Cay + Laucala + Amanpulo) y <strong>Area of Protection país-entero Panamá</strong> para proteger la exclusividad de marca LATAM de COMO Shambhala La Porcada.</span>
+                                <span class="lang-en hidden">Negotiate a <strong>Base Fee at the low end (2.5-3.0%)</strong> in exchange for granting COMO a <strong>higher Incentive Fee (up to 10%)</strong> with a 35% GOP hurdle rate. Demand a <strong>Performance Test in year 3</strong> and <strong>country-wide Area of Protection for Panama</strong>.</span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- TAB 7: REAL ESTATE REVALUATION COMPARISON -->
+        <div id="content-reval" class="tab-content hidden space-y-10">
+
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="px-3 py-1 rounded bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs font-semibold uppercase tracking-widest block w-fit mx-auto mb-3">
+                    <span class="lang-es">Comparativa de Revalorización Inmobiliaria</span><span class="lang-en hidden">Real Estate Revaluation Comparison</span>
+                </span>
+                <h2 class="font-cinzel text-3xl font-bold text-ivory mb-3">
+                    <span class="lang-es">RESPUESTA DEL MILLÓN: ¿QUIÉN REVALORIZA MÁS?<br><span class="gold-gradient-text">AMAN + DENNISTON vs COMO + CHEONG YEW KUAN</span></span>
+                    <span class="lang-en hidden">THE MILLION-DOLLAR ANSWER: WHO REVALUES MORE?<br><span class="gold-gradient-text">AMAN + DENNISTON vs COMO + CHEONG YEW KUAN</span></span>
+                </h2>
+                <p class="text-xs md:text-sm text-gray-400">
+                    <span class="lang-es">Análisis técnico verificado de los dos mecanismos de revalorización inmobiliaria aplicables a EcoResort La Porcada, con fuentes de mercado contrastadas.</span>
+                    <span class="lang-en hidden">Verified technical analysis of the two real estate revaluation mechanisms applicable to EcoResort La Porcada, with contrasted market sources.</span>
+                </p>
+            </div>
+
+            <!-- Verification Status Banner -->
+            <div class="glass-panel p-6 rounded-2xl border border-shambhala-500/30 bg-shambhala-500/5">
+                <div class="flex items-start gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-shambhala-500/20 border border-shambhala-400/40 flex items-center justify-center text-shambhala-400 flex-shrink-0">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="font-cinzel text-base font-bold text-shambhala-400 mb-2">
+                            <span class="lang-es">Estado de Verificación de las Conclusiones</span><span class="lang-en hidden">Verification Status of Conclusions</span>
+                        </h4>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs text-gray-300 font-light">
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-shambhala-400 mt-0.5"></i>
+                                <span><strong>Jean-Michel Gathy / Denniston</strong> como arquitecto de culto de Aman — <em>verificado</em> (Forbes, Hospitality Design Platinum Circle). Belga, nacido 1955, principal de Denniston desde 1983; clientes: Aman, One&Only, Park Hyatt, Mandarin Oriental, Cheval Blanc.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-shambhala-400 mt-0.5"></i>
+                                <span><strong>Prima Branded Residences 30-40%</strong> — <em>verificado</em> (EHL, Branded Living Co, Growth Market Reports). Promedio global 30-33%; en localizaciones resort sube a 34-39%.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-shambhala-400 mt-0.5"></i>
+                                <span><strong>Prima Wellness Real Estate</strong> — <em>verificado con ajuste</em> (Global Wellness Institute, NAR, Realtor.com). Documentado 10-25%; para ultra-lujo COMO Shambhala el rango 25-35% es razonable como techo.</span>
+                            </div>
+                            <div class="flex items-start gap-2">
+                                <i class="fa-solid fa-check text-shambhala-400 mt-0.5"></i>
+                                <span><strong>Low inventory + recurring clients</strong> — <em>verificado</em> por dinámica general del mercado de Branded Residences ultra-lujo; Parrot Cay confirma patrón de baja densidad y reventa limitada.</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TWO MECHANISMS CARDS -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+                <!-- Aman + Denniston Mechanism -->
+                <div class="glass-panel p-7 rounded-3xl border border-gray-600/40">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gray-700/30 border border-gray-500/40 flex items-center justify-center text-gray-300 font-cinzel font-bold text-xl">A</div>
+                        <div>
+                            <h3 class="font-cinzel text-xl font-bold text-ivory">AMAN + DENNISTON</h3>
+                            <p class="text-[10px] text-gray-400 uppercase tracking-widest">Jean-Michel Gathy · Bélgica 1955</p>
+                        </div>
+                    </div>
+                    <div class="inline-block px-3 py-1 rounded-full bg-gray-700/30 text-gray-300 text-[10px] font-bold uppercase tracking-wider mb-4">
+                        <span class="lang-es">Mecanismo: Efecto Firma de Autor (Arquitectura de Trofeo)</span><span class="lang-en hidden">Mechanism: Author Signature Effect (Trophy Architecture)</span>
+                    </div>
+                    <p class="text-xs text-gray-300 font-light leading-relaxed mb-4">
+                        <span class="lang-es">Jean-Michel Gathy (Denniston) es un <strong>arquitecto de culto</strong> que firma resorts para Aman desde hace décadas. Cuando firma un resort, genera un activo inmobiliario que se comporta como <em>una obra de arte coleccionable</em>.</span>
+                        <span class="lang-en hidden">Jean-Michel Gathy (Denniston) is a <strong>cult architect</strong> who has designed Aman resorts for decades. When he signs a resort, he generates a real estate asset that behaves like <em>a collectible artwork</em>.</span>
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gray-700/30">
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Mecanismo de Valor</span><span class="lang-en hidden">Value Mechanism</span></span>
+                            <p class="text-xs text-ivory">Activo inmobiliario = obra coleccionable firmada.</p>
+                        </div>
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gray-700/30">
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Impacto en m²</span><span class="lang-en hidden">Impact on m²</span></span>
+                            <p class="text-xs text-ivory">Sobreprecio hasta <strong class="text-gray-300">+40%</strong> sobre precio medio del mercado local por firma Denniston.</p>
+                        </div>
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gray-700/30">
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Perfil de Comprador</span><span class="lang-en hidden">Buyer Profile</span></span>
+                            <p class="text-xs text-ivory">Coleccionista que busca estatus, estética monumental y anonimato. Frecuentemente <em>Amanjunkies</em>.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COMO + CYK Mechanism -->
+                <div class="glass-panel p-7 rounded-3xl border border-gold-500/40">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-12 h-12 rounded-xl bg-gold-500/10 border border-gold-400/40 flex items-center justify-center text-gold-400 font-cinzel font-bold text-xl">C</div>
+                        <div>
+                            <h3 class="font-cinzel text-xl font-bold text-ivory">COMO + CHEONG YEW KUAN</h3>
+                            <p class="text-[10px] text-gold-400 uppercase tracking-widest">Christina Ong · Singapur · AreaDesigns</p>
+                        </div>
+                    </div>
+                    <div class="inline-block px-3 py-1 rounded-full bg-gold-500/20 text-gold-300 text-[10px] font-bold uppercase tracking-wider mb-4">
+                        <span class="lang-es">Mecanismo: Prima de Salud & Retorno Inmobiliario (Wellness Real Estate Premium)</span><span class="lang-en hidden">Mechanism: Health Premium & Real Estate Return</span>
+                    </div>
+                    <p class="text-xs text-gray-300 font-light leading-relaxed mb-4">
+                        <span class="lang-es">COMO Group no vende monumentalidad formal, sino <strong>estilo de vida, bienestar integral y exclusividad de nicho</strong>. El incremento de valor se explica por tres factores: <em>Wellness Premium</em>, <em>precedente Parrot Cay</em> y <em>rental yield recurrente</em>.</span>
+                        <span class="lang-en hidden">COMO Group does not sell formal monumentality, but <strong>lifestyle, integral wellness and niche exclusivity</strong>. The value increase is explained by three factors: <em>Wellness Premium</em>, <em>Parrot Cay precedent</em> and <em>recurring rental yield</em>.</span>
+                    </p>
+                    <div class="space-y-3">
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gold-500/20">
+                            <span class="text-[10px] text-gold-400 uppercase tracking-widest block mb-1">A · Wellness Real Estate Premium</span>
+                            <p class="text-xs text-ivory">Villas en ecosistema COMO Shambhala cotizan <strong class="text-gold-300">+25% a +35%</strong> sobre villas de lujo convencionales. Comprador adquiere programa de longevidad personalizado + acceso prioritario al santuario médico.</p>
+                        </div>
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gold-500/20">
+                            <span class="text-[10px] text-gold-400 uppercase tracking-widest block mb-1">B · Precedente COMO Parrot Cay</span>
+                            <p class="text-xs text-ivory">Villas/residencias bajo sello COMO experimentaron revalorización histórica superior a métricas del Caribe. <em>Low inventory</em> + gestión impecable dispara precios en mercado secundario.</p>
+                        </div>
+                        <div class="bg-obsidian-900/90 rounded-xl p-3 border border-gold-500/20">
+                            <span class="text-[10px] text-gold-400 uppercase tracking-widest block mb-1">C · Mayor Rental Yield</span>
+                            <p class="text-xs text-ivory">Mejores tasas de ocupación + ADR sostenido por clientes VIP recurrentes (programas de salud/detox varias veces/año). <strong class="text-gold-300">Rentabilidad por alquiler muy atractiva</strong>.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- COMPARATIVE TABLE -->
+            <div class="glass-panel rounded-3xl overflow-hidden border border-gold-500/30">
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-xs">
+                        <thead class="bg-obsidian-900 text-gold-300 font-cinzel border-b border-gold-500/30">
+                            <tr>
+                                <th class="p-4 md:p-5"><span class="lang-es">Criterio de Revalorización</span><span class="lang-en hidden">Revaluation Criterion</span></th>
+                                <th class="p-4 md:p-6">Aman + Denniston</th>
+                                <th class="p-4 md:p-6 bg-gold-500/10 text-gold-400 font-bold">COMO + Cheong Yew Kuan</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-800 text-gray-300 font-light">
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Prima de Venta Inicial (Branded Premium)</span><span class="lang-en hidden">Initial Sale Premium</span></td>
+                                <td class="p-4 md:p-5"><span class="text-gray-300 font-bold">+35% a +45%</span><br><span class="text-[10px] text-gray-500">Rango resort ultra-lujo (Branded Living Co: 34-39% resort avg)</span></td>
+                                <td class="p-4 md:p-5 bg-gold-500/5"><span class="text-gold-300 font-bold">+25% a +35%</span><br><span class="text-[10px] text-gray-500">Wellness Premium ultra-lujo (GWI: 10-25% base; techo COMO Shambhala)</span></td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Driver de Revalorización</span><span class="lang-en hidden">Revaluation Driver</span></td>
+                                <td class="p-4 md:p-5">Arquitectura icónica de autor + estatus VIP</td>
+                                <td class="p-4 md:p-5 bg-gold-500/5">Marca Longevidad/Wellness + baja densidad</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Liquidez Mercado Secundario</span><span class="lang-en hidden">Secondary Market Liquidity</span></td>
+                                <td class="p-4 md:p-5">Muy alta entre <em>Amanjunkies</em></td>
+                                <td class="p-4 md:p-5 bg-gold-500/5">Alta entre compradores Lifestyle & Salud</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Rendimiento Alquiler (Yield)</span><span class="lang-en hidden">Rental Yield</span></td>
+                                <td class="p-4 md:p-5">Moderado · enfoque uso estacional</td>
+                                <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">Alto · flujo recurrente por programas de salud</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Recurrencia de Cliente</span><span class="lang-en hidden">Client Recurrence</span></td>
+                                <td class="p-4 md:p-5">Baja-media (viajeros experienciales)</td>
+                                <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">Alta (programas salud multi-anuales)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Rental Premium Wellness</span><span class="lang-en hidden">Wellness Rental Premium</span></td>
+                                <td class="p-4 md:p-5">N/A</td>
+                                <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-gold-300">+4,4% a +7,7% por m² (GWI)</td>
+                            </tr>
+                            <tr>
+                                <td class="p-4 md:p-5 font-bold text-ivory"><span class="lang-es">Veredicto para La Porcada</span><span class="lang-en hidden">Verdict for La Porcada</span></td>
+                                <td class="p-4 md:p-5 text-gray-400">Mayor prima inicial de venta, pero menor yield recurrente</td>
+                                <td class="p-4 md:p-5 bg-gold-500/5 font-semibold text-emerald-400">Recomendado: equilibrio sólido prima+yield+recurrencia</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- IMPACT ON ECORESORT LA PORCADA -->
+            <div class="glass-panel p-8 md:p-10 rounded-3xl border border-gold-500/30">
+                <div class="text-center mb-8">
+                    <h3 class="font-cinzel text-2xl font-bold text-ivory mb-3">
+                        <span class="lang-es">IMPACTO EN ECORESORT <span class="gold-gradient-text">LA PORCADA</span></span>
+                        <span class="lang-en hidden">IMPACT ON ECORESORT <span class="gold-gradient-text">LA PORCADA</span></span>
+                    </h3>
+                    <p class="text-xs text-gray-400 max-w-3xl mx-auto">
+                        <span class="lang-es">Cálculo de revalorización aplicado al <strong>único inventario comercializable</strong> de La Porcada: <strong>50 Villas a Pie de Playa</strong> con precio de salida de <strong>$25M USD/villa</strong>. Las 100 suites, 50 overwater bungalows y 8 mansiones NO se comercializan (activo hotelero y patrimonial retenido por el operador/propietario).</span>
+                        <span class="lang-en hidden">Revaluation calculation applied to La Porcada's <strong>only commercialized inventory</strong>: <strong>50 Beachfront Villas</strong> with a starting price of <strong>$25M USD/villa</strong>. The 100 suites, 50 overwater bungalows and 8 mansions are NOT for sale (hotel and patrimonial asset retained by operator/owner).</span>
+                    </p>
+                </div>
+
+                <!-- Single Inventory Card (Beachfront Villas only) -->
+                <div class="flex justify-center mb-8">
+                    <div class="bg-gradient-to-br from-obsidian-900 to-obsidian-950 p-8 rounded-3xl border-2 border-gold-400/50 text-center max-w-md w-full shadow-2xl">
+                        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-gold-500/15 border border-gold-400/30 text-gold-300 text-[10px] font-bold uppercase tracking-widest mb-4">
+                            <i class="fa-solid fa-house-beach text-gold-400"></i>
+                            <span class="lang-es">Único Inventario en Venta</span><span class="lang-en hidden">Only Inventory For Sale</span>
+                        </div>
+                        <h4 class="font-cinzel text-2xl font-bold text-ivory mb-2">50 Villas a Pie de Playa</h4>
+                        <p class="text-[10px] text-gray-400 uppercase tracking-widest mb-4">Beachfront Villas · Frontline Ocean</p>
+                        <div class="border-t border-gold-500/20 pt-4">
+                            <span class="text-[10px] text-gray-400 uppercase tracking-widest block mb-1"><span class="lang-es">Precio de Salida</span><span class="lang-en hidden">Starting Price</span></span>
+                            <span class="font-cinzel text-4xl font-extrabold gold-gradient-text">$25 M USD</span>
+                            <span class="text-xs text-gray-500 block mt-1"><span class="lang-es">por villa · 50 villas = $1.250M base</span><span class="lang-en hidden">per villa · 50 villas = $1,250M base</span></span>
+                        </div>
+                        <div class="border-t border-gold-500/20 mt-4 pt-3 grid grid-cols-2 gap-3 text-[10px]">
+                            <div>
+                                <span class="text-gray-400 block"><span class="lang-es">Frente al Mar</span><span class="lang-en hidden">Ocean Front</span></span>
+                                <span class="text-gold-300 font-bold">Primera Línea</span>
+                            </div>
+                            <div>
+                                <span class="text-gray-400 block"><span class="lang-es">Inventario</span><span class="lang-en hidden">Inventory</span></span>
+                                <span class="text-gold-300 font-bold">50 unidades</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Revaluation Scenarios (Beachfront Villas only) -->
+                <div class="glass-panel rounded-2xl overflow-hidden border border-gold-500/20">
+                    <div class="overflow-x-auto">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-obsidian-900 text-gold-300 font-cinzel border-b border-gold-500/30">
+                                <tr>
+                                    <th class="p-4"><span class="lang-es">Concepto</span><span class="lang-en hidden">Concept</span></th>
+                                    <th class="p-4 text-center">Base Mercado</th>
+                                    <th class="p-4 text-center bg-gold-500/10 text-gold-400">COMO +25%</th>
+                                    <th class="p-4 text-center bg-gold-500/10 text-gold-400">COMO +30%</th>
+                                    <th class="p-4 text-center bg-gold-500/10 text-gold-400">COMO +35%</th>
+                                    <th class="p-4 text-center">Denniston +40%</th>
+                                    <th class="p-4 text-center">Denniston +45%</th>
+                                </tr>
+                            </thead>
+                            <tbody class="divide-y divide-gray-800 text-gray-300 font-light">
+                                <tr>
+                                    <td class="p-4 font-bold text-ivory"><span class="lang-es">Precio por Villa</span><span class="lang-en hidden">Price per Villa</span></td>
+                                    <td class="p-4 text-center">$25,00 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$31,25 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$32,50 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$33,75 M</td>
+                                    <td class="p-4 text-center">$35,00 M</td>
+                                    <td class="p-4 text-center">$36,25 M</td>
+                                </tr>
+                                <tr>
+                                    <td class="p-4 font-bold text-ivory"><span class="lang-es">Total 50 Villas</span><span class="lang-en hidden">Total 50 Villas</span></td>
+                                    <td class="p-4 text-center">$1.250 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$1.562,5 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$1.625 M</td>
+                                    <td class="p-4 text-center bg-gold-500/5 text-gold-300 font-semibold">$1.687,5 M</td>
+                                    <td class="p-4 text-center">$1.750 M</td>
+                                    <td class="p-4 text-center">$1.812,5 M</td>
+                                </tr>
+                                <tr class="border-t-2 border-gold-500/40 bg-obsidian-950">
+                                    <td class="p-4 font-bold text-gold-300 font-cinzel"><span class="lang-es">Incremento sobre Base</span><span class="lang-en hidden">Increment over Base</span></td>
+                                    <td class="p-4 text-center text-gray-500">—</td>
+                                    <td class="p-4 text-center bg-gold-500/10 text-gold-300 font-bold text-base">+$312,5 M</td>
+                                    <td class="p-4 text-center bg-gold-500/10 text-gold-300 font-bold text-base">+$375 M</td>
+                                    <td class="p-4 text-center bg-gold-500/10 text-gold-300 font-bold text-base">+$437,5 M</td>
+                                    <td class="p-4 text-center text-gray-300 font-bold">+$500 M</td>
+                                    <td class="p-4 text-center text-gray-300 font-bold">+$562,5 M</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- Non-commercialized inventory note -->
+                <div class="mt-4 p-4 rounded-xl bg-obsidian-900/90 border border-gray-700/30">
+                    <div class="flex items-start gap-2">
+                        <i class="fa-solid fa-circle-info text-gray-400 mt-0.5"></i>
+                        <div class="text-[10px] text-gray-400 leading-relaxed">
+                            <span class="lang-es"><strong>Inventario NO comercializado (retenido):</strong> 100 Ultra-Luxury Suites + 50 Overwater Bungalows = 150 keys de inventario hotelero operativo · 8 Legacy Mansions = activo patrimonial del promotor. Estos activos generan ingresos recurrentes vía ADR y membresía, pero <em>no se venden</em> — por ello la <strong>revalorización inmobiliaria se calcula exclusivamente sobre las 50 Villas a Pie de Playa</strong>.</span>
+                            <span class="lang-en hidden"><strong>Non-commercialized inventory (retained):</strong> 100 Ultra-Luxury Suites + 50 Overwater Bungalows = 150 keys operational hotel inventory · 8 Legacy Mansions = promoter's patrimonial asset. These generate recurring revenue via ADR and membership, but are <em>not for sale</em> — hence the <strong>real estate revaluation is calculated exclusively on the 50 Beachfront Villas</strong>.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Conclusion Box -->
+                <div class="mt-6 p-6 rounded-2xl bg-gradient-to-br from-gold-500/10 to-shambhala-500/10 border border-gold-500/30">
+                    <div class="flex items-start gap-3 mb-3">
+                        <div class="w-10 h-10 rounded-xl bg-gold-500/20 border border-gold-400/40 flex items-center justify-center text-gold-400 flex-shrink-0">
+                            <i class="fa-solid fa-trophy"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-lg font-bold text-gold-300 mb-2">
+                                <span class="lang-es">VEREDICTO FINAL PARA TAKYMA</span><span class="lang-en hidden">FINAL VERDICT FOR TAKYMA</span>
+                            </h4>
+                            <p class="text-xs text-gray-300 font-light leading-relaxed mb-3">
+                                <span class="lang-es">Sobre las <strong>50 Villas a Pie de Playa</strong> (base $1.250M), la elección de arquitecto marca una diferencia de hasta <strong>+$125M</strong> entre el escenario COMO conservador (+$312,5M) y el Denniston más agresivo (+$562,5M). <strong>COMO + Cheong Yew Kuan</strong> es la opción recomendada por cuatro razones verificadas:</span>
+                                <span class="lang-en hidden">On the <strong>50 Beachfront Villas</strong> ($1,250M base), the choice of architect makes a difference of up to <strong>+$125M</strong> between the conservative COMO scenario (+$312.5M) and the most aggressive Denniston (+$562.5M). <strong>COMO + Cheong Yew Kuan</strong> is the recommended option for four verified reasons:</span>
+                            </p>
+                            <ol class="space-y-2 text-xs text-gray-300 font-light">
+                                <li class="flex gap-2"><strong class="text-gold-400">1.</strong><span><span class="lang-es"><strong>Rental Yield recurrente</strong> — clientes COMO Shambhala repiten 2-3 veces/año por programas de salud, garantizando flujo de caja estable para el pool de alquiler de las villas.</span><span class="lang-en hidden"><strong>Recurring Rental Yield</strong> — COMO Shambhala clients repeat 2-3 times/year for health programs.</span></span></li>
+                                <li class="flex gap-2"><strong class="text-gold-400">2.</strong><span><span class="lang-es"><strong>Low inventory sostenido</strong> — solo 50 villas en venta + densidad del 5% = escasez extrema que sostiene precios secundarios.</span><span class="lang-en hidden"><strong>Sustained low inventory</strong> — only 50 villas for sale + 5% density = extreme scarcity sustaining secondary prices.</span></span></li>
+                                <li class="flex gap-2"><strong class="text-gold-400">3.</strong><span><span class="lang-es"><strong>Sinergia infraestructura médica</strong> — pista + aduana + COMO Shambhala convierten cada villa en un activo residencial-médico único en el Pacífico americano, justificando el premium de salud.</span><span class="lang-en hidden"><strong>Medical infrastructure synergy</strong> — airstrip + customs + COMO Shambhala turn each villa into a unique residential-medical asset in the American Pacific.</span></span></li>
+                                <li class="flex gap-2"><strong class="text-gold-400">4.</strong><span><span class="lang-es"><strong>Revalorización sólida $312M–$437M</strong> — aunque Denniston podría añadir +$125M adicionales en el techo, el equilibrio prima+yield+recurrencia de COMO es superior para el modelo de negocio de La Porcada.</span><span class="lang-en hidden"><strong>Solid revaluation $312M–$437M</strong> — although Denniston could add +$125M at the ceiling, COMO's prima+yield+recurrence balance is superior for La Porcada's business model.</span></span></li>
+                            </ol>
+                        </div>
+                    </div>
+                    <div class="mt-4 pt-4 border-t border-gold-500/20 text-center">
+                        <p class="font-cinzel text-sm text-gold-300 font-bold tracking-wider">
+                            <span class="lang-es">RECOMENDACIÓN: OPTAR POR COMO GROUP + CHEONG YEW KUAN</span><span class="lang-en hidden">RECOMMENDATION: CHOOSE COMO GROUP + CHEONG YEW KUAN</span>
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Sources -->
+                <div class="mt-6 p-4 rounded-xl bg-obsidian-900/90 border border-gold-500/10 text-[10px] text-gray-500 leading-relaxed">
+                    <i class="fa-solid fa-book text-gold-400 mr-1"></i>
+                    <span class="lang-es"><strong>Fuentes verificadas:</strong> Forbes (Jean-Michel Gathy profile, 2023) · Hospitality Design Platinum Circle · EHL Insights (Branded Residences, 2025) · Branded Living Co Definitive Guide 2026 · Growth Market Reports · Global Wellness Institute (Wellness Real Estate) · NAR (Wellness Trend Premiums, 2025) · Realtor.com (Wellness Real Estate Market, 2026) · COMO Hotels official · WATG (Laucala project data) · Luxury Travel Bible (Cheong Yew Kuan profile, 2020).</span>
+                    <span class="lang-en hidden"><strong>Verified sources:</strong> Forbes · Hospitality Design Platinum Circle · EHL Insights · Branded Living Co · Growth Market Reports · Global Wellness Institute · NAR · Realtor.com · COMO Hotels official · WATG · Luxury Travel Bible.</span>
+                </div>
+            </div>
+
+        </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="py-12 border-t border-gold-500/10 bg-obsidian-950 text-center text-xs text-gray-500">
+        <div class="max-w-7xl mx-auto px-6 space-y-6">
+
+            <!-- Footer Logos Strip -->
+            <div class="flex flex-wrap items-center justify-center gap-8 md:gap-12 pb-6 border-b border-gold-500/10">
+                <!-- TAKYMA -->
+                <div class="flex flex-col items-center gap-2">
+                    <div class="logo-wrapper w-16 h-16" data-logo="footer-takyma">
+                        <img src="images/LOGO.png" alt="TAKYMA Investment Pioneer" class="logo-img w-16 h-16 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-16 h-16 rounded-lg bg-gradient-to-br from-gold-400 to-gold-600 text-obsidian-950 text-sm">TAKYMA</span>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-widest text-gold-500/80 font-semibold">Promotor del Proyecto</span>
+                </div>
+
+                <!-- EcoResort -->
+                <div class="flex flex-col items-center gap-2">
+                    <div class="logo-wrapper w-16 h-16" data-logo="footer-ecoresort">
+                        <img src="images/ECORESORT.png" alt="EcoResort La Porcada" class="logo-img w-16 h-16 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-16 h-16 rounded-lg bg-obsidian-800 border border-gold-500/40 text-gold-300 text-sm">ECO</span>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-widest text-gold-500/80 font-semibold">Proyecto</span>
+                </div>
+
+                <!-- COMO Group -->
+                <div class="flex flex-col items-center gap-2">
+                    <div class="logo-wrapper w-16 h-16" data-logo="footer-comogroup">
+                        <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-16 h-16 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <span class="logo-fallback w-16 h-16 rounded-lg bg-gold-500/10 border border-gold-400/40 text-gold-400 text-base">C</span>
+                    </div>
+                    <span class="text-[9px] uppercase tracking-widest text-gold-500/80 font-semibold">Operador</span>
+                </div>
+            </div>
+
+            <p class="font-cinzel text-gold-400 tracking-[0.2em] uppercase mb-2 font-bold text-sm">ECORESORT LA PORCADA · COMO GROUP TARGET OPERATOR PITCH</p>
+            <p class="text-gray-500"><span class="lang-es">Documentación Estratégica Confidencial de Evaluación HMA · Panamá Pacífico · Promovido por TAKYMA Investment Pioneer</span><span class="lang-en hidden">Confidential HMA Operator Evaluation Deck · Panama Pacific · Promoted by TAKYMA Investment Pioneer</span></p>
+
+            <!-- Copyright -->
+            <div class="pt-6 border-t border-gold-500/10">
+                <p class="font-cinzel text-[11px] md:text-xs tracking-[0.25em] uppercase text-gold-300 font-bold">
+                    COPYRIGHT 2026 ECORESORT LA PORCADA <span class="text-gray-500 font-light normal-case tracking-normal">by</span> TAKYMA INVESTMENT PIONEER
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE SCRIPT LOGIC -->
+    <script>
+        // Language Toggle Functionality
+        let currentLang = 'es';
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            const esEls = document.querySelectorAll('.lang-es');
+            const enEls = document.querySelectorAll('.lang-en');
+            const btnEs = document.getElementById('btn-es');
+            const btnEn = document.getElementById('btn-en');
+
+            if (lang === 'en') {
+                esEls.forEach(el => el.classList.add('hidden'));
+                enEls.forEach(el => el.classList.remove('hidden'));
+
+                btnEn.className = "px-3 py-1 text-[11px] font-bold rounded-full bg-gold-500 text-obsidian-950 transition-all shadow-sm";
+                btnEs.className = "px-3 py-1 text-[11px] font-bold rounded-full text-gray-400 hover:text-ivory transition-all";
+            } else {
+                enEls.forEach(el => el.classList.add('hidden'));
+                esEls.forEach(el => el.classList.remove('hidden'));
+
+                btnEs.className = "px-3 py-1 text-[11px] font-bold rounded-full bg-gold-500 text-obsidian-950 transition-all shadow-sm";
+                btnEn.className = "px-3 py-1 text-[11px] font-bold rounded-full text-gray-400 hover:text-ivory transition-all";
+            }
+        }
+
+        // Tab Switching Logic
+        function switchTab(tabId) {
+            const tabs = document.querySelectorAll('.tab-btn');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach(tab => {
+                tab.classList.remove('active');
+                tab.classList.add('text-gray-300');
+            });
+
+            contents.forEach(content => {
+                content.classList.add('hidden');
+            });
+
+            const activeTab = document.getElementById(`tab-${tabId}`);
+            const activeContent = document.getElementById(`content-${tabId}`);
+
+            if (activeTab && activeContent) {
+                activeTab.classList.add('active');
+                activeTab.classList.remove('text-gray-300');
+                activeContent.classList.remove('hidden');
+            }
+        }
+
+        // Dynamic Revenue Simulator Logic
+        // EcoResort La Porcada parameters:
+        //   Members: 3,500 – 5,500
+        //   Annual dues: $50,000 – $100,000 USD
+        //   Resort minimum daily rate (ADR): $8,900 – $90,000 USD
+        function updateSim() {
+            const members = parseInt(document.getElementById('input-members').value);
+            const dues = parseInt(document.getElementById('input-dues').value);
+            const adr = parseInt(document.getElementById('input-adr').value);
+
+            const memberLabel = currentLang === 'es' ? 'Miembros' : 'Members';
+            document.getElementById('val-members').textContent = `${members.toLocaleString()} ${memberLabel}`;
+            document.getElementById('val-dues').textContent = `$${dues.toLocaleString()} USD`;
+            document.getElementById('val-adr').textContent = `$${adr.toLocaleString()} USD`;
+
+            // Calculations
+            // Membership revenue = members × annual dues
+            const duesRev = (members * dues) / 1000000; // in millions
+            // 150 total hotel keys (100 suites + 50 overwater), 65% occupancy, 365 days
+            const hotelRev = (150 * 0.65 * adr * 365) / 1000000; // in millions
+            const totalRev = duesRev + hotelRev;
+
+            const formatM = (v) => {
+                if (v >= 1000) return `$${(v).toFixed(0)} M USD`;
+                return `$${(v).toFixed(2)} M USD`;
+            };
+
+            document.getElementById('res-dues').textContent = formatM(duesRev);
+            document.getElementById('res-hotel').textContent = formatM(hotelRev);
+            document.getElementById('res-total').textContent = formatM(totalRev);
+        }
+
+        // Copy Email Pitch to Clipboard
+        function copyComoPitch() {
+            const textToCopy = document.getElementById('como-pitch-text').textContent;
+
+            const textArea = document.createElement("textarea");
+            textArea.value = textToCopy;
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                alert(currentLang === 'es' ? "¡Email de presentación copiado al portapapeles!" : "Pitch email copied to clipboard successfully!");
+            } catch (err) {
+                console.error("Copy failed", err);
+            }
+            document.body.removeChild(textArea);
+        }
+
+        // Initialize simulator on load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateSim();
+        });
+    </script>
+</body>
+</html>
