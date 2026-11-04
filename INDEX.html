@@ -51,11 +51,104 @@
         }
     </script>
     <style>
-        body {
+        html {
             background-color: #07080A;
+        }
+        body {
+            background-color: transparent;
             color: #F9F8F6;
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            position: relative;
+        }
+        /* === VIDEO BACKGROUND === */
+        #bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            object-fit: cover;
+            z-index: -2;
+            pointer-events: none;
+        }
+        #bg-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(180deg, rgba(7,8,10,0.82) 0%, rgba(7,8,10,0.88) 100%);
+            z-index: -1;
+            pointer-events: none;
+        }
+        /* === MUSIC TOGGLE BUTTON === */
+        #music-toggle {
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            z-index: 100;
+            width: 56px;
+            height: 56px;
+            border-radius: 9999px;
+            background: rgba(18, 21, 27, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(197, 160, 89, 0.4);
+            color: #D4AF37;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 24px -6px rgba(0,0,0,0.6);
+        }
+        #music-toggle:hover {
+            border-color: rgba(212, 175, 55, 0.7);
+            color: #FAF4EB;
+            transform: scale(1.06);
+            box-shadow: 0 12px 32px -8px rgba(212, 175, 55, 0.4);
+        }
+        #music-toggle .music-pulse {
+            position: absolute;
+            inset: -6px;
+            border-radius: 9999px;
+            border: 2px solid rgba(212, 175, 55, 0.5);
+            opacity: 0;
+            animation: musicPulse 2s ease-out infinite;
+            pointer-events: none;
+        }
+        #music-toggle.is-playing .music-pulse {
+            opacity: 1;
+        }
+        @keyframes musicPulse {
+            0%   { transform: scale(0.95); opacity: 0.7; }
+            70%  { transform: scale(1.25); opacity: 0; }
+            100% { transform: scale(1.25); opacity: 0; }
+        }
+        #music-toggle .music-label {
+            position: absolute;
+            right: 70px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(18, 21, 27, 0.9);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #D4AF37;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.25s ease;
+            pointer-events: none;
+        }
+        #music-toggle:hover .music-label {
+            opacity: 1;
         }
         .font-cinzel {
             font-family: 'Cinzel', serif;
@@ -132,6 +225,30 @@
 </head>
 <body class="antialiased selection:bg-gold-500 selection:text-obsidian-950">
 
+    <!-- ============================================== -->
+    <!-- FONDO DE VIDEO: PORCADAY1.MP4                  -->
+    <!-- Cubre toda la presentacion como fondo visual   -->
+    <!-- ============================================== -->
+    <video id="bg-video" autoplay muted loop playsinline preload="auto">
+        <source src="video/PORCADAY1.MP4" type="video/mp4">
+    </video>
+    <div id="bg-overlay"></div>
+
+    <!-- ============================================== -->
+    <!-- HILO MUSICAL: WHEEL OF TIME.MP3                -->
+    <!-- Reproduce en bucle con control de mute/play    -->
+    <!-- ============================================== -->
+    <audio id="bg-music" loop preload="auto">
+        <source src="music/WHEEL OF TIME.MP3" type="audio/mpeg">
+    </audio>
+
+    <!-- Boton flotante para controlar la musica -->
+    <button id="music-toggle" onclick="toggleMusic()" aria-label="Reproducible o silenciar musica de fondo" title="Reproducible / Pausar musica">
+        <span class="music-pulse"></span>
+        <i id="music-icon" class="fa-solid fa-volume-xmark"></i>
+        <span class="music-label" id="music-label">Activar Musica</span>
+    </button>
+
     <!-- Top Navigation Header -->
     <header class="fixed top-0 left-0 w-full z-50 glass-panel border-b border-gold-500/20 px-4 md:px-8 py-3 transition-all">
         <div class="max-w-7xl mx-auto flex justify-between items-center gap-4">
@@ -168,7 +285,7 @@
                 <!-- COMO GROUP Operator Logo -->
                 <div class="hidden md:flex flex-col items-center gap-0.5">
                     <div class="logo-wrapper w-10 h-10" data-logo="comogroup">
-                        <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <img src="images/SRAONG.PNG" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
                         <span class="logo-fallback w-10 h-10 rounded-md bg-gold-500/10 border border-gold-400/40 text-gold-400 text-sm">C</span>
                     </div>
                     <span class="text-[7px] uppercase tracking-widest text-gray-400 font-semibold">Operador</span>
@@ -262,7 +379,7 @@
                     <div class="flex items-center gap-4 mb-4">
                         <!-- COMO Group Logo -->
                         <div class="logo-wrapper w-14 h-14 flex-shrink-0" data-logo="como-group-section">
-                            <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-14 h-14 rounded-xl" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                            <img src="images/SRAONG.PNG" alt="COMO Group" class="logo-img w-14 h-14 rounded-xl" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
                             <span class="logo-fallback w-14 h-14 rounded-xl bg-gold-500/10 border border-gold-400/40 text-gold-400 text-2xl">C</span>
                         </div>
                         <div>
@@ -840,7 +957,7 @@
                 <div class="glass-panel p-6 rounded-2xl border-l-4 border-l-gold-500">
                     <div class="flex items-center gap-3 mb-3">
                         <div class="logo-wrapper w-10 h-10" data-logo="como-matrix">
-                            <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                            <img src="images/SRAONG.PNG" alt="COMO Group" class="logo-img w-10 h-10 rounded-md" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
                             <span class="logo-fallback w-10 h-10 rounded-md bg-gold-500/10 border border-gold-400/40 text-gold-400 text-sm">C</span>
                         </div>
                         <div>
@@ -1805,6 +1922,160 @@ Promoter of EcoResort La Porcada · Panama Pacific</pre>
 
     </main>
 
+    <!-- ================================================== -->
+    <!-- SECCION ESPECIAL FINAL: LA ISLA QUE ESTA EXPLOTANDO -->
+    <!-- Referencia operacional viva de COMO Group           -->
+    <!-- ================================================== -->
+    <section class="relative py-16 md:py-24 px-6 overflow-hidden border-t border-gold-500/30">
+        <!-- Ambient glows -->
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[400px] bg-gold-500/15 rounded-full blur-[160px] pointer-events-none"></div>
+        <div class="absolute bottom-0 right-10 w-[400px] h-[400px] bg-shambhala-500/15 rounded-full blur-[140px] pointer-events-none"></div>
+
+        <div class="max-w-6xl mx-auto relative z-10">
+
+            <!-- Eyebrow -->
+            <div class="text-center mb-10">
+                <span class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-gold-500/10 border border-gold-400/30 text-gold-300 text-xs font-semibold tracking-[0.2em] uppercase mb-6 shadow-sm">
+                    <i class="fa-solid fa-fire text-xs text-gold-400"></i>
+                    <span class="lang-es">El Caso de Exito Operacional Vivo de COMO Group</span>
+                    <span class="lang-en hidden">COMO Group's Live Operational Success Case</span>
+                </span>
+
+                <h2 class="font-cinzel text-3xl md:text-5xl font-extrabold text-ivory mb-4 leading-tight">
+                    <span class="lang-es">LA ISLA QUE ESTA<br><span class="gold-gradient-text">EXPLOTANDO AHORA MISMO</span></span>
+                    <span class="lang-en hidden">THE ISLAND THAT IS<br><span class="gold-gradient-text">EXPLODING RIGHT NOW</span></span>
+                </h2>
+
+                <p class="text-sm md:text-base text-gray-300 max-w-3xl mx-auto font-light leading-relaxed">
+                    <span class="lang-es">
+                        <strong>COMO Laucala Island</strong> &mdash; la isla privada de <strong>1.400 hectareas</strong> en Fiyi operada por COMO Group &mdash; es el activo operativo mas espectacular del portfolio de Christina Ong. Hoy es referencia mundial de ultra-lujo de bajisima densidad, residencias premium y wellness Shambhala en el Pacifico Sur. Es exactamente el modelo de referencia que EcoResort La Porcada replicara en el Pacifico americano.
+                    </span>
+                    <span class="lang-en hidden">
+                        <strong>COMO Laucala Island</strong> &mdash; the 1,400-hectare private island in Fiji operated by COMO Group &mdash; is the most spectacular operational asset in Christina Ong's portfolio. Today it is the global benchmark for ultra-luxury low-density living, premium residences and Shambhala wellness in the South Pacific. It is exactly the reference model that EcoResort La Porcada will replicate in the American Pacific.
+                    </span>
+                </p>
+            </div>
+
+            <!-- Highlight Card with Link -->
+            <div class="glass-panel rounded-3xl border border-gold-500/40 overflow-hidden">
+
+                <!-- Top visual strip -->
+                <div class="relative h-48 md:h-64 bg-gradient-to-br from-shambhala-600/40 via-obsidian-850 to-gold-700/30 overflow-hidden flex items-center justify-center">
+                    <!-- Decorative ocean scene with CSS only -->
+                    <div class="absolute inset-0 opacity-30">
+                        <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-obsidian-950 to-transparent"></div>
+                        <div class="absolute top-6 left-10 w-32 h-32 rounded-full bg-gold-400/20 blur-3xl"></div>
+                        <div class="absolute bottom-10 right-16 w-40 h-40 rounded-full bg-shambhala-400/20 blur-3xl"></div>
+                    </div>
+                    <div class="relative z-10 text-center px-6">
+                        <i class="fa-solid fa-island-tropical text-5xl md:text-7xl text-gold-300 mb-3 drop-shadow-lg"></i>
+                        <h3 class="font-cinzel text-2xl md:text-4xl font-bold text-ivory drop-shadow-lg tracking-wide">
+                            COMO LAUCALA ISLAND
+                        </h3>
+                        <p class="text-gold-200 text-xs md:text-sm uppercase tracking-[0.3em] mt-1 font-light">
+                            Fiji &middot; Pacifico Sur &middot; 1.400 Ha
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Body content -->
+                <div class="p-6 md:p-10 grid grid-cols-1 md:grid-cols-3 gap-6">
+
+                    <!-- Stat 1 -->
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/20 text-center">
+                        <div class="text-gold-400 text-3xl mb-2"><i class="fa-solid fa-tree"></i></div>
+                        <span class="font-cinzel text-2xl font-bold text-ivory block">1.400 Ha</span>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">
+                            <span class="lang-es">Isla Privada Completa</span>
+                            <span class="lang-en hidden">Full Private Island</span>
+                        </span>
+                    </div>
+
+                    <!-- Stat 2 -->
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/20 text-center">
+                        <div class="text-gold-400 text-3xl mb-2"><i class="fa-solid fa-key"></i></div>
+                        <span class="font-cinzel text-2xl font-bold text-ivory block">25 Villas</span>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">
+                            <span class="lang-es">Ultra-Lujo Baja Densidad</span>
+                            <span class="lang-en hidden">Ultra-Low Density Luxury</span>
+                        </span>
+                    </div>
+
+                    <!-- Stat 3 -->
+                    <div class="bg-obsidian-900/90 rounded-2xl p-5 border border-gold-500/20 text-center">
+                        <div class="text-gold-400 text-3xl mb-2"><i class="fa-solid fa-plane-departure"></i></div>
+                        <span class="font-cinzel text-2xl font-bold text-ivory block">Pista + Aduana</span>
+                        <span class="text-[10px] text-gray-400 uppercase tracking-widest">
+                            <span class="lang-es">Soberania Logistica</span>
+                            <span class="lang-en hidden">Logistic Sovereignty</span>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- Recognition -->
+                <div class="px-6 md:px-10 pb-2 text-center">
+                    <p class="text-xs text-gray-400 font-light">
+                        <i class="fa-solid fa-award text-gold-400 mr-2"></i>
+                        <span class="lang-es"><strong>Reconocido como</strong> uno de los mejores resorts privados del mundo por Cond&eacute; Nast Traveler 2016 y referente absoluto en ultra-lujo insular.</span>
+                        <span class="lang-en hidden"><strong>Recognized as</strong> one of the world's best private resorts by Cond&eacute; Nast Traveler 2016 and absolute benchmark in island ultra-luxury.</span>
+                    </p>
+                </div>
+
+                <!-- Big CTA -->
+                <div class="p-6 md:p-10 pt-6 text-center">
+                    <p class="text-sm md:text-base text-gray-200 font-light mb-6 max-w-3xl mx-auto leading-relaxed">
+                        <span class="lang-es">
+                            Visite el sitio oficial y compruebe en vivo el nivel operacional que Christina Ong y COMO Group han alcanzado en Laucala &mdash; el mismo standard que se aplicara en <strong class="text-gold-300">EcoResort La Porcada</strong>:
+                        </span>
+                        <span class="lang-en hidden">
+                            Visit the official site and see for yourself the operational level that Christina Ong and COMO Group have achieved at Laucala &mdash; the same standard that will be applied at <strong class="text-gold-300">EcoResort La Porcada</strong>:
+                        </span>
+                    </p>
+
+                    <a href="https://www.laucala.com/" target="_blank" rel="noopener noreferrer"
+                       class="inline-flex items-center gap-3 px-8 md:px-12 py-4 md:py-5 bg-gradient-to-r from-gold-500 via-gold-400 to-gold-500 hover:from-gold-400 hover:to-gold-400 text-obsidian-950 font-cinzel font-bold rounded-xl shadow-2xl shadow-gold-500/30 transition-all text-sm md:text-base uppercase tracking-[0.18em] group">
+                        <i class="fa-solid fa-link text-base"></i>
+                        <span class="lang-es">Explorar COMO Laucala Island</span>
+                        <span class="lang-en hidden">Explore COMO Laucala Island</span>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-base group-hover:translate-x-1 group-hover:-translate-y-0.5 transition-transform"></i>
+                    </a>
+
+                    <p class="mt-4 text-[11px] text-gray-500 font-mono">
+                        <i class="fa-solid fa-globe mr-1"></i> https://www.laucala.com/
+                    </p>
+                </div>
+
+                <!-- Bridge to La Porcada -->
+                <div class="mx-6 md:mx-10 mb-6 p-5 rounded-2xl bg-gradient-to-br from-shambhala-500/15 to-gold-500/10 border border-shambhala-400/30">
+                    <div class="flex items-start gap-3">
+                        <div class="w-9 h-9 rounded-lg bg-shambhala-500/20 border border-shambhala-400/40 flex items-center justify-center text-shambhala-400 flex-shrink-0">
+                            <i class="fa-solid fa-bridge"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-cinzel text-sm font-bold text-gold-200 mb-1">
+                                <span class="lang-es">El Puente hacia La Porcada</span>
+                                <span class="lang-en hidden">The Bridge to La Porcada</span>
+                            </h4>
+                            <p class="text-xs text-gray-200 font-light leading-relaxed">
+                                <span class="lang-es">Lo que hoy explota comercialmente en el Pacifico Sur (Laucala) se replicara en el Pacifico americano con EcoResort La Porcada: isla privada completa, pista y aduana propias, dominio Shambhala, residencias de marca y modelo de Club Privado de Membresia. <strong class="text-gold-300">La Porcada sera la Laucala de America.</strong></span>
+                                <span class="lang-en hidden">What is now commercially thriving in the South Pacific (Laucala) will be replicated in the American Pacific with EcoResort La Porcada: full private island, own airstrip and customs, Shambhala mastery, branded residences and Private Members Club model. <strong class="text-gold-300">La Porcada will be the Laucala of the Americas.</strong></span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- Closing statement -->
+            <div class="text-center mt-10">
+                <p class="font-cinzel text-gold-300 text-sm md:text-base tracking-[0.2em] uppercase font-bold">
+                    <span class="lang-es">LAUCALA HOY &nbsp;&middot;&nbsp; LA PORCADA MANANA</span>
+                    <span class="lang-en hidden">LAUCALA TODAY &nbsp;&middot;&nbsp; LA PORCADA TOMORROW</span>
+                </p>
+            </div>
+        </div>
+    </section>
+
     <!-- FOOTER -->
     <footer class="py-12 border-t border-gold-500/10 bg-obsidian-950 text-center text-xs text-gray-500">
         <div class="max-w-7xl mx-auto px-6 space-y-6">
@@ -1832,7 +2103,7 @@ Promoter of EcoResort La Porcada · Panama Pacific</pre>
                 <!-- COMO Group -->
                 <div class="flex flex-col items-center gap-2">
                     <div class="logo-wrapper w-16 h-16" data-logo="footer-comogroup">
-                        <img src="images/COMOGROUP.png" alt="COMO Group" class="logo-img w-16 h-16 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
+                        <img src="images/SRAONG.PNG" alt="COMO Group" class="logo-img w-16 h-16 rounded-lg" onerror="this.classList.add('hidden-fallback');this.parentElement.classList.add('has-fallback');">
                         <span class="logo-fallback w-16 h-16 rounded-lg bg-gold-500/10 border border-gold-400/40 text-gold-400 text-base">C</span>
                     </div>
                     <span class="text-[9px] uppercase tracking-widest text-gold-500/80 font-semibold">Operador</span>
@@ -1954,7 +2225,76 @@ Promoter of EcoResort La Porcada · Panama Pacific</pre>
         // Initialize simulator on load
         document.addEventListener('DOMContentLoaded', function() {
             updateSim();
+            initMusic();
         });
+
+        // ============================================================
+        // CONTROL DE MUSICA DE FONDO (WHEEL OF TIME.MP3)
+        // ============================================================
+        let musicPlaying = false;
+        const bgMusic = document.getElementById('bg-music');
+        const musicToggle = document.getElementById('music-toggle');
+        const musicIcon = document.getElementById('music-icon');
+        const musicLabel = document.getElementById('music-label');
+
+        function updateMusicUI() {
+            if (musicPlaying) {
+                musicIcon.className = 'fa-solid fa-volume-high';
+                musicToggle.classList.add('is-playing');
+                musicLabel.textContent = currentLang === 'es' ? 'Pausar Musica' : 'Pause Music';
+            } else {
+                musicIcon.className = 'fa-solid fa-volume-xmark';
+                musicToggle.classList.remove('is-playing');
+                musicLabel.textContent = currentLang === 'es' ? 'Activar Musica' : 'Play Music';
+            }
+        }
+
+        function toggleMusic() {
+            if (!bgMusic) return;
+            if (musicPlaying) {
+                bgMusic.pause();
+                musicPlaying = false;
+            } else {
+                const p = bgMusic.play();
+                if (p && typeof p.then === 'function') {
+                    p.then(() => { musicPlaying = true; updateMusicUI(); })
+                     .catch(err => { console.warn('No se pudo reproducir la musica:', err); });
+                } else {
+                    musicPlaying = true;
+                }
+            }
+            updateMusicUI();
+        }
+
+        function initMusic() {
+            if (!bgMusic) return;
+            bgMusic.volume = 0.45;
+            // Intento de autoplay (los navegadores bloquean audio sin interaccion).
+            // Si esta bloqueado, el boton queda disponible para que el usuario lo active.
+            const p = bgMusic.play();
+            if (p && typeof p.then === 'function') {
+                p.then(() => { musicPlaying = true; updateMusicUI(); })
+                 .catch(() => { musicPlaying = false; updateMusicUI(); });
+            }
+            // Si el navegador bloquea el autoplay, empezamos al primer click/tecla
+            const startOnInteraction = () => {
+                if (!musicPlaying) {
+                    const pp = bgMusic.play();
+                    if (pp && typeof pp.then === 'function') {
+                        pp.then(() => { musicPlaying = true; updateMusicUI(); })
+                          .catch(() => {});
+                    } else {
+                        musicPlaying = true;
+                        updateMusicUI();
+                    }
+                }
+                document.removeEventListener('click', startOnInteraction);
+                document.removeEventListener('keydown', startOnInteraction);
+            };
+            document.addEventListener('click', startOnInteraction);
+            document.addEventListener('keydown', startOnInteraction);
+            updateMusicUI();
+        }
     </script>
 </body>
 </html>
